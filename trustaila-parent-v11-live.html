@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AiLA: General counsel of one? Now you have a department.</title>
+<meta name="description" content="AiLA is your external AI legal department. It toils day and night picking up the rote and routine, so every morning the work is on your desk, with the evidence and reasoning attached. You sign off, or you delegate. Should a matter escalate, our own lawyers take it on. All for a fraction of what traditional law firms charge.">
+<meta property="og:title" content="AiLA: General counsel of one? Now you have a department.">
+<meta property="og:description" content="Your external legal department. AI does the rote and routine, you sign off or delegate, our own lawyers take what escalates.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.trustaila.com/">
+<meta property="og:image" content="https://www.trustaila.com/og-image.png">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --ink:#101828; --muted:#4a525c; --line:#e3e5e9;
+    --navy:#0b264d; --navy-soft:#e7ecf3;
+    --burgundy:#4e0c19; --burgundy-soft:#f3e7e9;
+    --steel:#416890; --steel-soft:#e6edf4;
+    --ochre:#dba644; --ochre-deep:#b97b29; --ochre-soft:#f9f0da;
+    --indigo:#4f46e5; --indigo-soft:#eceafc;
+    --cream:#ede8d3; --cream-deep:#ddd6bd;
+    --slate:#3f444d; --slate-soft:#e9eaec; --pale:#7c8997; --pale-soft:#eef0f2;
+    --green:#15803d; --green-soft:#e9f7ee; --red:#9b2c2c;
+    --spine:34px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-left:var(--spine)}
+  a{color:inherit}
+  h1,h2{letter-spacing:-.03em;font-weight:800;line-height:1.06}
+  h2{font-size:clamp(28px,3.2vw,42px);max-width:20em}
+  .lede2{margin-top:22px;max-width:38em;color:var(--muted);font-size:17px}
+
+  /* The spine: one stripe per Vault, navy for AiLA itself; active stripe widens on scroll */
+  .spine{position:fixed;left:0;top:0;bottom:0;width:var(--spine);display:flex;flex-direction:column;z-index:20}
+  .spine a{flex:1;display:block;position:relative;transition:flex .5s cubic-bezier(.2,.8,.2,1)}
+  .spine a.on{flex:2.6}
+  .spine a span{position:absolute;left:100%;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-size:11px;font-weight:700;letter-spacing:.02em;color:#fff;padding:8px 6px;opacity:0;transition:opacity .3s;pointer-events:none;background:inherit;border-radius:0 6px 6px 0}
+  .spine a:hover span,.spine a.on span{opacity:1}
+  .s-aila{background:var(--navy)} .s-work{background:var(--slate);opacity:.45} .s-inno{background:var(--pale);opacity:.45}
+  .spine a.soon span::after{content:" · soon";font-weight:500} .s-contract{background:var(--burgundy)} .s-privacy{background:var(--steel)} .s-entity{background:var(--ochre)} .s-brand{background:var(--indigo)}
+
+  header{display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;border-bottom:1px solid var(--line)}
+  .logo{text-decoration:none;background:var(--navy);border-radius:4px;padding:6px 12px;display:inline-flex;align-items:center}
+  nav{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:500}
+  nav a{color:var(--muted);text-decoration:none}
+  nav a:hover{color:var(--ink)}
+  nav a.cta{color:#fff;background:var(--navy);padding:10px 18px;border-radius:8px}
+
+  section{padding:15vh 6vw;border-top:1px solid var(--line)}
+  section .inner{max-width:1240px;margin:0 auto}
+  .cream{background:var(--cream)}
+
+  /* Ambient motion */
+  .toast{position:fixed;right:22px;bottom:22px;z-index:30;background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:12px;padding:12px 16px;max-width:340px;box-shadow:0 14px 40px rgba(11,38,77,.14);font-size:13.5px;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .4s;pointer-events:none}
+  .toast.show{opacity:1;transform:none}
+  .toast b{display:block;font-size:13.5px} .toast small{color:var(--muted);font-size:12px}
+  .toast.v-contract{border-left-color:var(--burgundy)} .toast.v-privacy{border-left-color:var(--steel)} .toast.v-entity{border-left-color:var(--ochre)} .toast.v-brand{border-left-color:var(--indigo)}
+  .voices{overflow:hidden;border-bottom:1px solid var(--line);background:#fff;padding:22px 0;white-space:nowrap}
+  .voices .track{display:inline-block;animation:slide 70s linear infinite;font-size:14px;color:var(--muted)}
+  .voices .track span{margin:0 34px 0 0;display:inline-block}
+  .voices .track span::before{content:"\201C";color:var(--ochre-deep);margin-right:2px} .voices .track span::after{content:"\201D";color:var(--ochre-deep);margin-left:2px}
+  .voices .track i{font-style:normal;font-size:11px;color:#9aa1ab;margin-right:34px}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .spine a.on{animation:breathe 4s ease-in-out infinite}
+  @keyframes breathe{0%,100%{filter:brightness(1)}50%{filter:brightness(1.18)}}
+  @media (prefers-reduced-motion: reduce){.voices .track{animation:none}.spine a.on{animation:none}.toast{display:none}.week li,.week .box,.week .box::after,.week li.weekend .txt s,.week li.weekend .txt::after{transition:none}}
+
+  /* Palette at large scale: a horizontal band, the spine laid flat */
+  .band{height:14px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr 1fr;border-top:1px solid var(--line)}
+  .band i:nth-child(6){background:var(--slate);opacity:.45} .band i:nth-child(7){background:var(--pale);opacity:.45}
+  .band i{display:block}
+  .band i:nth-child(1){background:var(--navy)} .band i:nth-child(2){background:var(--burgundy)} .band i:nth-child(3){background:var(--steel)} .band i:nth-child(4){background:var(--ochre)} .band i:nth-child(5){background:var(--indigo)}
+  .band.thin{height:6px;border:none}
+
+  /* Narrow strip: why legal can leave the building now */
+  .why{padding:13vh 6vw;border-top:1px solid var(--line)}
+  .why .inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:5vw;align-items:start}
+  .why h2{font-size:clamp(24px,2.6vw,34px)}
+  .why p{color:var(--muted);font-size:16px;max-width:38em}
+  .why p+p{margin-top:12px}
+  .why .paper{margin-top:18px;padding:16px 18px;border-left:4px solid var(--navy);background:var(--navy-soft);border-radius:0 10px 10px 0;font-size:14.5px;max-width:38em}
+  .why .paper a{font-weight:700;color:var(--navy)}
+  .why .paper small{display:block;margin-top:6px;color:var(--muted);font-size:13px}
+
+  /* Dark inversion: the watch section on navy, palette accents on it */
+  section.dark{background:var(--navy);color:#fff;border-top:none}
+  section.dark h2{color:#fff} section.dark .lede2{color:#c9d5e8}
+  section.dark .clock{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
+  section.dark .clock small{color:#b7c4da} section.dark .days small{color:#b7c4da}
+  section.dark .clock.v-privacy{border-left-color:#8fb3dc} section.dark .clock.v-entity{border-left-color:var(--ochre)} section.dark .clock.v-brand{border-left-color:#9b94f0} section.dark .clock.v-contract{border-left-color:#c86b7a}
+  section.dark .caught{color:#7fd6a1}
+  section.dark .inversion{background:var(--ochre);color:var(--ink)}
+  section.dark .inversion p{color:#3d2e0c}
+
+  /* ---- FOLD ---- */
+  .fold{max-width:1240px;margin:0 auto;padding:9vh 6vw 11vh;min-height:calc(100vh - 96px);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);grid-template-rows:auto 1fr;gap:56px 7vw;align-items:stretch;border-top:none}
+  .fold .week{grid-column:1 / -1}
+  .fold > .copy{display:flex;flex-direction:column;justify-content:center}
+  .desk-wrap{position:relative;min-height:420px}
+  .week{list-style:none;margin:0;padding:0 0 26px;display:flex;flex-wrap:wrap;gap:12px 40px;font-size:14.5px;color:var(--muted);border-bottom:1px solid var(--line)}
+  .week li{display:flex;align-items:center;gap:11px;transition:color .4s}
+  .box{width:18px;height:18px;border:1.5px solid #b9bfc9;border-radius:4px;flex-shrink:0;position:relative;background:#fff;transition:border-color .4s,background .4s}
+  .box::after{content:"";position:absolute;left:3px;bottom:5px;width:8px;height:6px;border-bottom:2px solid var(--navy);border-right:2px solid var(--navy);opacity:0;transform:scaleX(0);transform-origin:left;transition:opacity .25s,transform .35s ease-out}
+  .week li.tick .box{border-color:var(--navy);background:var(--navy-soft)}
+  .week li.tick .box::after{opacity:1;transform:scaleX(1)}
+  .week li.tick{color:var(--ink)}
+  .week li.weekend .txt s{text-decoration-color:var(--red);text-decoration-thickness:1.5px;color:#7a2f22}
+  .week li.weekend .txt s{transition:opacity .6s}
+  .week li.weekend.tick .txt s{opacity:0;position:absolute;pointer-events:none}
+  .week li.weekend .txt{position:relative}
+  .week li.weekend .txt::after{content:"back";color:var(--green);font-weight:600;opacity:0;transition:opacity .6s .4s}
+  .week li.weekend.tick .txt::after{opacity:1}
+  .week li.weekend .box::after{border-color:var(--green)}
+  .week li.weekend.tick .box{border-color:var(--green);background:var(--green-soft)}
+  h1{font-size:clamp(36px,3.5vw,54px);max-width:13em}
+  .lede{margin-top:34px;font-size:17px;color:var(--muted);max-width:32em;line-height:1.7}
+  .doors{margin-top:44px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:700px}
+  .door{display:block;text-decoration:none;border:1.5px solid var(--line);border-radius:12px;padding:20px 20px;transition:border-color .15s}
+  .door:hover{border-color:var(--navy)}
+  .door strong{display:block;font-size:15.5px;font-weight:700}
+  .door span{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
+  .door.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+  .door.primary span{color:#c9d5e8}
+  .quiet{margin-top:20px;font-size:13.5px;color:var(--muted)}
+  .quiet a{color:var(--ink)}
+
+  .desk{position:absolute;inset:0;background:var(--cream);border:1px solid var(--cream-deep);border-radius:18px;padding:30px 28px 24px;overflow-y:auto;overscroll-behavior:contain}
+  .desk::-webkit-scrollbar{width:8px} .desk::-webkit-scrollbar-thumb{background:var(--cream-deep);border-radius:99px}
+  .desk-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+  .desk-head h2{font-size:15px;font-weight:700;letter-spacing:0}
+  .desk-head .count{font-size:13px;color:var(--muted)} .desk-head .count b{color:var(--ink)}
+  .matter{background:#fff;border:1px solid var(--cream-deep);border-radius:12px;padding:18px 20px;margin-top:14px;border-left:4px solid var(--line);opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
+  .matter.in{opacity:1;transform:none}
+  .matter.v-contract{border-left-color:var(--burgundy);background:linear-gradient(90deg,var(--burgundy-soft) 0,#fff 34%)}
+  .matter.v-privacy{border-left-color:var(--steel);background:linear-gradient(90deg,var(--steel-soft) 0,#fff 34%)}
+  .matter.v-entity{border-left-color:var(--ochre);background:linear-gradient(90deg,var(--ochre-soft) 0,#fff 34%)}
+  .matter.v-brand{border-left-color:var(--indigo);background:linear-gradient(90deg,var(--indigo-soft) 0,#fff 34%)}
+  .desk-head h2::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--navy);margin-right:8px;vertical-align:-1px}
+  .m-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .m-title{font-size:14.5px;font-weight:700} .m-time{font-size:12px;color:var(--muted);white-space:nowrap}
+  .m-body{margin-top:8px;font-size:13.5px;color:var(--muted);line-height:1.55}
+  .m-evidence{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+  .ev{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--cream);border:1px solid var(--cream-deep);color:var(--muted)}
+  .ev.ok{background:var(--green-soft);color:var(--green);border-color:#cfead8}
+  .ev.warn{background:var(--ochre-soft);color:var(--ochre-deep);border-color:#e9d6a6}
+  .m-actions{margin-top:14px;display:flex;gap:8px}
+  .btn{font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  .btn.approve{background:var(--navy);border-color:var(--navy);color:#fff}
+  .btn:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+  .matter.done{background:var(--green-soft);border-color:#cfead8}
+  .matter.done .m-actions{display:none}
+  .matter.done .m-body::before{content:"Signed off. ";font-weight:700;color:var(--green)}
+  .matter.auto .m-body::before{content:"";}
+  .matter.auto .m-actions{display:none}
+  .matter.report{border-left-color:var(--navy);background:linear-gradient(90deg,var(--navy-soft) 0,#fff 34%)}
+  .matter.report .m-body::before{content:"Ready, not waiting. ";font-weight:700;color:var(--navy)}
+  .desk-foot{margin-top:20px;display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+  .live i{width:7px;height:7px;border-radius:99px;background:var(--green);display:inline-block;margin-right:7px;animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .ticker{margin-top:12px;font-size:13px;color:var(--muted);height:20px;position:relative;overflow:hidden}
+  .ticker div{position:absolute;left:0;right:0;opacity:0;transition:opacity .5s} .ticker div.show{opacity:1} .ticker b{color:var(--ink);font-weight:600}
+
+  /* ---- QUEUE (screen 2) ---- */
+  .strike{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:3px;color:var(--muted)}
+  .board{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .col{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;min-height:220px}
+  .col h3{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:10px;display:flex;justify-content:space-between}
+  .card{border:1px solid var(--line);border-left:4px solid var(--line);border-radius:9px;padding:13px 14px;font-size:13px;margin-top:10px;background:#fff}
+  .card b{display:block;font-size:13.5px}
+  .card small{color:var(--muted)}
+  .card.v-contract{border-left-color:var(--burgundy)} .card.v-privacy{border-left-color:var(--steel)} .card.v-entity{border-left-color:var(--ochre)} .card.v-brand{border-left-color:var(--indigo)}
+  .who{margin-top:40px;display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+  .who div{font-size:14px;color:var(--muted)} .who div b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:3px}
+
+  /* ---- WATCH (screen 3) ---- */
+  .radar{margin-top:48px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+  .clocks{display:grid;gap:12px}
+  .clock{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;border-left:4px solid var(--line)}
+  .clock.v-privacy{border-left-color:var(--steel)} .clock.v-entity{border-left-color:var(--ochre)} .clock.v-brand{border-left-color:var(--indigo)} .clock.v-contract{border-left-color:var(--burgundy)}
+  .clock b{display:block;font-size:14px} .clock small{color:var(--muted);font-size:13px}
+  .days{font-size:22px;font-weight:800;letter-spacing:-.02em;text-align:right;line-height:1} .days small{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0}
+  .caught{color:var(--green)}
+  .inversion{background:var(--navy);color:#fff;border-radius:16px;padding:34px}
+  .inversion h3{font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .inversion p{margin-top:12px;color:#c9d5e8;font-size:15px}
+
+  /* ---- MONEY ---- */
+  .money{margin-top:48px;display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:start}
+  .money .why-p{color:var(--muted);font-size:16px;max-width:36em}
+  .money .why-p+.why-p{margin-top:12px}
+  .bill{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  .bill .row{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;padding:18px 22px;border-top:1px solid var(--line);font-size:14px;align-items:center}
+  .bill .row:first-child{border-top:none;background:var(--cream);font-weight:700;font-size:12.5px;color:var(--muted)}
+  .bill .row b{display:block;font-size:14px} .bill .row small{color:var(--muted);font-size:12.5px}
+  .bill .firm{color:var(--red);font-weight:700}
+  .bill .ours{color:var(--green);font-weight:700}
+  .bill .foot{padding:12px 18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);background:var(--cream)}
+
+  /* ---- VAULTS ---- */
+  .vaults{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .vault.soon{background:#fff;color:var(--ink);border:1.5px dashed #c5cad3}
+  .vault.soon .area,.vault.soon p{color:var(--muted);opacity:1}
+  .vault.soon .tag{background:var(--slate-soft);color:var(--muted)}
+  .vault.soon a{color:var(--navy)}
+  .vault.v-work .name::before,.vault.v-inno .name::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;opacity:.6}
+  .vault.v-work .name::before{background:var(--slate)} .vault.v-inno .name::before{background:var(--pale)}
+  .vault{border-radius:16px;padding:30px;color:#fff;display:flex;flex-direction:column;min-height:300px}
+  .vault.v-contract{background:var(--burgundy)} .vault.v-privacy{background:var(--steel)} .vault.v-entity{background:var(--ochre);color:var(--ink)} .vault.v-brand{background:var(--indigo)}
+  .vault .name{font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .vault .area{font-size:13px;opacity:.85;margin-top:2px}
+  .vault p{margin-top:14px;font-size:14px;opacity:.92;flex:1}
+  .vault a{margin-top:16px;font-size:14px;font-weight:700;text-decoration:none;border-bottom:1.5px solid currentColor;align-self:flex-start;padding-bottom:1px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(255,255,255,.18);margin-left:8px;vertical-align:2px}
+  .vault.v-entity .tag{background:rgba(16,24,40,.12)}
+
+  /* ---- BUILD (provisioning) ---- */
+  .build{margin-top:48px;display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:start}
+  .field{display:flex;gap:8px;margin-top:18px;max-width:440px}
+  .field input{flex:1;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px}
+  .field button{padding:13px 18px;border-radius:10px;border:none;background:var(--navy);color:#fff;font-weight:700;font-family:inherit;cursor:pointer}
+  .stage{background:var(--cream);border:1px solid var(--cream-deep);border-radius:16px;padding:22px;min-height:300px;display:grid;gap:12px;align-content:start}
+  .stage .row{background:#fff;border:1px solid var(--cream-deep);border-radius:10px;padding:12px 14px;font-size:13.5px;display:flex;justify-content:space-between;align-items:center;border-left:4px solid var(--line);opacity:.35;transition:opacity .4s}
+  .stage .row.on{opacity:1}
+  .stage .row.v-entity{border-left-color:var(--ochre)} .stage .row.v-brand{border-left-color:var(--indigo)} .stage .row.v-privacy{border-left-color:var(--steel)} .stage .row.v-contract{border-left-color:var(--burgundy)}
+  .stage .row b{display:block} .stage .row small{color:var(--muted)}
+  .stage .row .st{font-size:12px;font-weight:700;color:var(--muted)} .stage .row.on .st{color:var(--green)}
+
+  /* ---- COLLEAGUE ---- */
+  .seats{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .seat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;border-top:4px solid var(--navy)}
+  .seat b{display:block;font-size:15.5px;margin-bottom:8px}
+  .seat p{font-size:14px;color:var(--muted)}
+  .seat .addr{display:inline-block;margin-top:10px;font-size:12.5px;padding:4px 10px;border-radius:99px;background:var(--navy-soft);color:var(--navy);font-weight:600}
+
+  /* ---- ESCALATION / TRUST / TEAM / FAQ / FORM ---- */
+  .scope{margin-top:36px;border:1px solid var(--line);border-radius:14px;padding:24px 28px;background:#fff;max-width:52em;font-size:14.5px;color:var(--muted)}
+  .scope strong{color:var(--ink)}
+  .never{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .never div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 24px}
+  .never b{display:block;font-size:14.5px;margin-bottom:5px} .never p{font-size:13.5px;color:var(--muted)}
+  .people{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:980px}
+  .person{background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px}
+  .p-name{font-size:18px;font-weight:800;letter-spacing:-.01em} .p-role{font-size:13px;color:var(--navy);font-weight:700;margin:2px 0 10px}
+  .person p{font-size:14.5px;color:var(--muted)}
+  .faq{margin-top:40px;max-width:56em}
+  details{border-bottom:1px solid var(--line);padding:22px 4px}
+  summary{font-weight:700;font-size:16px;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+  summary::-webkit-details-marker{display:none} summary::after{content:"+";color:var(--muted)} details[open] summary::after{content:"–"}
+  details p{margin-top:10px;font-size:14.5px;color:var(--muted);max-width:48em}
+  .closing{text-align:center} .closing h2{margin:0 auto} .closing .lede2{margin-left:auto;margin-right:auto}
+  .form{margin:36px auto 0;max-width:460px;text-align:left}
+  .form label{display:block;font-size:13px;font-weight:600;margin:14px 0 5px}
+  .form input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:15px}
+  .form button{width:100%;margin-top:20px;font-weight:700;font-size:16px;background:var(--navy);color:#fff;padding:15px;border-radius:10px;border:none;cursor:pointer}
+  .note{margin-top:12px;font-size:12.5px;color:var(--muted);text-align:center}
+  footer{border-top:1px solid var(--line);padding:32px 5vw;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media (prefers-reduced-motion: reduce){.matter,.stage .row{opacity:1;transform:none;transition:none}.live i{animation:none}}
+  @media(max-width:1500px) and (min-width:961px){
+    .desk{padding:24px 22px 20px}
+    .matter{padding:16px 18px;margin-top:14px}
+    .m-title{font-size:13.5px} .m-time{font-size:11.5px} .m-body{font-size:13px;margin-top:6px}
+    .ev{font-size:11px;padding:3px 8px} .m-evidence{gap:6px;margin-top:10px}
+    .btn{font-size:12.5px;padding:7px 12px} .m-actions{margin-top:12px}
+    .desk-head h2{font-size:14px} .desk-head .count{font-size:12.5px}
+  }
+  @media(max-height:820px) and (min-width:961px){
+    h1{font-size:clamp(34px,3.3vw,48px)}
+  }
+  @media(max-width:960px){
+    :root{--spine:14px}
+    .spine a span{display:none}
+    .fold,.radar,.build,.why .inner,.money{grid-template-columns:1fr;gap:28px}
+    .desk-wrap{min-height:0}
+    .desk{position:static;max-height:70vh}
+    .fold{min-height:0;grid-template-rows:auto auto auto}
+    .fold > .copy{display:block}
+    .week{flex-direction:column;gap:8px;border-bottom:none;padding-bottom:0}
+    .bill .row{grid-template-columns:1fr;gap:4px}
+    .board,.never,.seats{grid-template-columns:1fr}
+    .who{grid-template-columns:1fr}
+    .vaults{grid-template-columns:1fr 1fr}
+    .people{grid-template-columns:1fr}
+    nav a:not(.cta){display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="spine" aria-label="Page sections">
+  <a class="s-aila on" href="#top"><span>AiLA</span></a>
+  <a class="s-contract" href="#contracts"><span>ContractVault</span></a>
+  <a class="s-privacy" href="#privacy"><span>PrivacyVault</span></a>
+  <a class="s-entity" href="#entity"><span>EntityVault</span></a>
+  <a class="s-brand" href="#brand"><span>BrandVault</span></a>
+  <a class="s-work soon" href="#work"><span>Employment</span></a>
+  <a class="s-inno soon" href="#inno"><span>InnoVault</span></a>
+</div>
+
+<header id="top">
+  <a class="logo" href="#top" aria-label="AiLA home">
+    <svg width="66" height="34" viewBox="0 0 75 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="30" font-family="Inter, sans-serif" font-weight="800" font-size="28" fill="#ffffff" letter-spacing="0.5">AiLA</text>
+      <line x1="18" y1="36" x2="72" y2="36" stroke="#ffffff" stroke-width="1.8" stroke-linecap="square"/>
+      <line x1="74" y1="36" x2="74" y2="28" stroke="#ffffff" stroke-width="1.8" stroke-linecap="square"/>
+    </svg>
+  </a>
+  <nav aria-label="Main">
+    <a href="#gc">For general counsel</a>
+    <a href="#solutions">Solutions</a>
+    <a href="#build">How it starts</a>
+    <a href="#money">How it's priced</a>
+    <a href="#trust">Trust</a>
+    <a href="#team">Team</a>
+    <a href="#access" class="cta">Request access</a>
+  </nav>
+</header>
+
+<section class="fold" id="gc">
+  <ul class="week" aria-label="A general counsel's week">
+      <li data-i="0"><span class="box"></span><span class="txt">A £480k deal waiting on your redline</span></li>
+      <li data-i="1"><span class="box"></span><span class="txt">A breach notification due in 41 hours</span></li>
+      <li data-i="2"><span class="box"></span><span class="txt">Series B papers for Monday</span></li>
+      <li data-i="3" class="weekend"><span class="box"></span><span class="txt">Weekend with the family, <s>gone</s></span></li>
+  </ul>
+  <div class="copy">
+    <h1>General counsel of one? Now you have a department.</h1>
+    <p class="lede">AiLA is your external AI legal department. It toils day and night picking up the rote and routine, so every morning the work is on your desk, with the evidence and reasoning attached. You sign off, or you delegate. Should a matter escalate, our own lawyers take it on. All for a fraction of what traditional law firms charge.</p>
+    <div class="doors">
+      <a class="door primary" href="#solutions"><strong>For general counsel</strong><span>Delegate the routine to AiLA and keep the decisions.</span></a>
+      <a class="door" href="#queue"><strong>For legal teams at capacity</strong><span>The routine, and the surge, without a hiring process.</span></a>
+      <a class="door" href="#build"><strong>For startups past £1m ARR</strong><span>A legal department that arrives already built.</span></a>
+    </div>
+  </div>
+
+  <div class="desk-wrap"><div class="desk" aria-label="Illustrative sign-off desk">
+    <div class="desk-head"><h2>Your desk this morning</h2><div class="count"><b id="waiting">0</b> waiting for you</div></div>
+    <div class="matter v-contract" data-delay="150">
+      <div class="m-top"><div class="m-title">Enterprise MSA, Pellworth Group, £480k ARR</div><div class="m-time">Their paper. Closes Friday</div></div>
+      <div class="m-body">Reviewed against your precedents. Six deviations, two you never accept: uncapped liability and an IP assignment. Fallback positions drafted for both; the other four are within tolerance.</div>
+      <div class="m-evidence"><span class="ev warn">Liability uncapped</span><span class="ev warn">IP assignment clause</span><span class="ev ok">Fallbacks drafted</span><span class="ev">Redline to sales</span></div>
+      <div class="m-actions"><button class="btn approve">Approve redline</button><button class="btn">Open</button></div>
+    </div>
+    <div class="matter v-privacy" data-delay="800">
+      <div class="m-top"><div class="m-title">Breach at a vendor, 1,900 customer records</div><div class="m-time">Notified 22:40 last night</div></div>
+      <div class="m-body">Assessed as reportable. ICO notification drafted within the 72 hours, customer notice drafted, vendor put on formal notice. 41 hours remain on the clock.</div>
+      <div class="m-evidence"><span class="ev warn">41 hours to notify</span><span class="ev">ICO form drafted</span><span class="ev">Customer notice</span><span class="ev">Vendor letter</span></div>
+      <div class="m-actions"><button class="btn approve">Approve notification</button><button class="btn">Discuss first</button></div>
+    </div>
+    <div class="matter auto v-contract" data-delay="1400">
+      <div class="m-top"><div class="m-title">The small stuff, cleared: 11 items since Friday</div><div class="m-time">Under your standing authority</div></div>
+      <div class="m-body">Three NDAs on our paper, sent. The Q4 campaign copy, reviewed and two claims softened. A supplier's terms, accepted at standard. An offer letter for Head of Sales, out before the competing offer expired. A customer's data-processing question, answered from your policy. All logged, none on your desk.</div>
+      <div class="m-evidence"><span class="ev">3 NDAs</span><span class="ev">Marketing copy</span><span class="ev">Supplier terms</span><span class="ev">Offer letter</span><span class="ev">View log</span></div>
+    </div>
+    
+    
+    
+    <div class="matter report" data-delay="2000">
+      <div class="m-top"><div class="m-title">August legal report for the CFO</div><div class="m-time">Written from the log</div></div>
+      <div class="m-body">Spend against budget, matters opened and closed, time from receipt to prepared, and what external counsel would have cost for the same work. Every figure traceable to a logged action; nothing reconstructed from memory.</div>
+      <div class="m-evidence"><span class="ev ok">Spend 71% of budget</span><span class="ev ok">19 matters closed</span><span class="ev ok">£38k external spend avoided</span><span class="ev">Median 4h 10m to prepared</span></div>
+      <div class="m-actions"><button class="btn approve">Send to CFO</button><button class="btn">Edit first</button></div>
+    </div>
+    <div class="desk-foot"><span class="live"><i></i>Running overnight and at weekends. Nothing consequential leaves without you.</span><span>Illustrative desk; the companies are invented.</span></div>
+    <div class="ticker" id="ticker">
+      <div class="show">Breach assessed as reportable; ICO notification drafted, <b>at 23:15 last night</b></div>
+      <div>Customer MSA redlined against your precedents, <b>2 hours after it arrived</b></div>
+      <div>Auto-renewal notice deadline caught, <b>9 days out</b></div>
+      <div>Opposition notice drafted, <b>the day the application published</b></div>
+    </div>
+  </div></div>
+</section>
+
+<div class="band" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="voices" aria-label="What in-house lawyers tell us">
+  <div class="track">
+    <span>It's been with legal for three weeks.</span><span>I do the renewals on Sunday nights.</span><span>We found out about the auto-renewal when the invoice arrived.</span><span>Sales think I'm the reason the deal slipped.</span><span>The DSAR landed at six on a Friday.</span><span>I'm the whole department, and I'm on holiday next week.</span><span>External counsel charged us to read our own contract.</span><i>Composite lines from discovery conversations; no individual quoted</i>
+    <span>It's been with legal for three weeks.</span><span>I do the renewals on Sunday nights.</span><span>We found out about the auto-renewal when the invoice arrived.</span><span>Sales think I'm the reason the deal slipped.</span><span>The DSAR landed at six on a Friday.</span><span>I'm the whole department, and I'm on holiday next week.</span><span>External counsel charged us to read our own contract.</span><i>Composite lines from discovery conversations; no individual quoted</i>
+  </div>
+</div>
+<section class="cream" id="queue" style="border-top:none">
+  <div class="inner">
+    <h2><span class="strike">"It's with legal."</span> Not any more.</h2>
+    <p class="lede2">The phrase that casts a bad spell on a deal, a launch and a hire, said about a lawyer who is already working nights. AiLA takes the queue away from both of them. Work starts the moment the obligation arrives: the simple things come back in seconds, the complex ones within hours, and all of it reaches you prepared. And when the quarter brings a diligence request, a restructuring and a launch at once, the department scales to the peak; nobody hires for it, and nothing waits.</p>
+    <div class="board" aria-label="Illustrative matter board">
+      <div class="col"><h3>Received <span>this week: 23</span></h3>
+        <div class="card v-contract"><b>Enterprise MSA, Pellworth Group</b><small>Their paper, 41 pages. Sales needs it back by Thursday</small></div>
+        <div class="card v-privacy"><b>DSAR from a departing executive</b><small>Tribunal claim expected. Clock started Tuesday</small></div>
+        <div class="card v-entity"><b>Investor diligence request</b><small>43 contracts to check for change-of-control consents</small></div>
+      </div>
+      <div class="col"><h3>Prepared <span>median 4h 10m</span></h3>
+        <div class="card v-contract"><b>Settlement agreement, departing executive</b><small>From your precedent; the compromise terms are yours to set</small></div>
+        <div class="card v-entity"><b>Change-of-control review</b><small>6 of 43 need consent; the letters are drafted</small></div>
+        <div class="card v-privacy"><b>DPIA, new analytics vendor</b><small>Screened; two risks flagged, mitigations proposed</small></div>
+      </div>
+      <div class="col"><h3>Signed off <span>this week: 19</span></h3>
+        <div class="card v-contract"><b>Enterprise MSA, Pellworth Group</b><small>Redline approved 11:02, countersigned Friday. £480k booked</small></div>
+        <div class="card v-entity"><b>Series B closing pack</b><small>Filed. Completion confirmed Monday 16:40</small></div>
+        <div class="card v-brand"><b>Opposition filed, MERIDIAM</b><small>Inside the window. Now with AiLA Legal</small></div>
+      </div>
+    </div>
+    <div class="who">
+      <div><b>For the CEO</b>The £480k deal closes this quarter, not next.</div>
+      <div><b>For sales</b>The customer's paper comes back redlined the same day.</div>
+      <div><b>For HR</b>The offer goes out before the competing one expires.</div>
+      <div><b>For the board</b>The round completes on the day it was meant to.</div>
+      <div><b>For the CFO</b>The legal report arrives written, with every number traceable.</div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="inner">
+    <div>
+      <h2>Legal is leaving the building, the way payroll, IT and facilities did.</h2>
+    </div>
+    <div>
+      <p>Routine legal work stayed inside the company for one reason: the cost of the alternative. An outside lawyer starts from zero on your context, bills the briefing, and you can't see how the work was done. So companies hired a general counsel and gave them everything.</p>
+      <p>An AI harness removes both costs at once. It holds your policies, history and positions, so nothing starts from zero, and it logs every check, draft and sign-off, so external work becomes more inspectable than an employee's. Once context and control can sit outside the firm, the routine layer of the legal function can follow the others out of the building.</p>
+      <div class="paper">The argument in full: <a href="https://ssrn.com/abstract=7270500">Reconsidering Coase in the Age of AI</a>, a working paper by Mark Kingsley-Williams (founder and CEO of AiLA), Lucy Tallon and Mijo Juric Williams.<small>Linked by economist Tyler Cowen on Marginal Revolution, August 2026.</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="watch">
+  <div class="inner">
+    <h2>Nothing gets missed. We make money when nothing goes wrong.</h2>
+    <p class="lede2">Most legal loss in the mid-market comes from missed deadlines: renewals that lapse, notice windows that close, a clock nobody was watching. A law firm earns when there is a problem to fix. AiLA earns by watching, so the problem never occurs.</p>
+    <div class="radar">
+      <div class="clocks" aria-label="Illustrative obligations being watched">
+        <div class="clock v-privacy"><div><b>Subject access request, T. Okafor</b><small>Response prepared, awaiting your sign-off</small></div><div class="days">26<small>days left</small></div></div>
+        <div class="clock v-entity"><div><b>Confirmation statement, Northgate Foods Ltd</b><small>Drafted from the register</small></div><div class="days">14<small>days left</small></div></div>
+        <div class="clock v-contract"><div><b>Auto-renewal, Cloudspan services agreement</b><small class="caught">Notice window caught. Decision prepared: renegotiate or exit</small></div><div class="days">31<small>days to notice</small></div></div>
+        <div class="clock v-brand"><div><b>Renewal window, MERIDIAN (UK)</b><small>Opens 3 October; evidence gathered</small></div><div class="days">24<small>days to window</small></div></div>
+        <div class="clock v-privacy"><div><b>ICO correspondence, case ref. 44127</b><small class="caught">Deadline caught; reply drafted</small></div><div class="days">9<small>days left</small></div></div>
+      </div>
+      <div class="inversion">
+        <h3>A retainer changes what your provider wants.</h3>
+        <p>A firm sells matters, so a problem that occurs is revenue. On a retainer, prevention is where we earn, which is why every contract term, statutory clock, filing and renewal is watched without being asked, and each decision reaches you prepared, evidence and reasoning attached.</p>
+        <p>First the queue goes. Then the problems stop arriving.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="money">
+  <div class="inner">
+    <h2>Cheaper, as well as faster. They are the same fact.</h2>
+    <div class="money">
+      <div>
+        <p class="why-p">A law firm's hourly rate carries a pyramid: junior hours billed at a mark-up for every partner at the top, and partner profit priced into every minute of every matter. That is the business model, and it is why the routine work, the work you send most often, costs the most per unit of judgement.</p>
+        <p class="why-p">AiLA carries neither. AI does most of the labour, so the price of a reviewed contract or a prepared response is close to the cost of the compute. Our lawyers appear only when a matter escalates, and then on a quoted fee. You pay a retainer against the work, the way you pay an accountant, so the tenth contract costs no more than the first. And the matters that never arrive, because they were caught, cost nothing at all.</p>
+      </div>
+      <div class="bill" aria-label="Illustrative comparison at typical mid-market rates">
+        <div class="row"><span>The work</span><span>A firm, at £400+ an hour</span><span>With AiLA</span></div>
+        <div class="row"><div><b>Customer's MSA, 41 pages</b><small>Reviewed, redlined to your precedents</small></div><span class="firm">£2,400</span><span class="ours">Within your retainer</span></div>
+        <div class="row"><div><b>Subject access request</b><small>214 documents gathered, redacted, packaged</small></div><span class="firm">£5,000 and up</span><span class="ours">Within your retainer</span></div>
+        <div class="row"><div><b>Board pack and filings, one closing</b><small>Resolutions, SH01, register reconciled</small></div><span class="firm">£3,200</span><span class="ours">Within your retainer</span></div>
+        <div class="row"><div><b>Renewal decision, one mark</b><small>Use evidence gathered, recommendation made</small></div><span class="firm">£350 plus fees</span><span class="ours">Within your retainer</span></div>
+        <div class="row"><div><b>The auto-renewal nobody caught</b><small>Three years on old pricing</small></div><span class="firm">£117,000</span><span class="ours">£0. Notice served.</span></div>
+        <div class="foot">Illustrative, at typical mid-market rates. Retainers are quoted against your actual portfolio, contracts and volumes; escalated matters are quoted before work begins.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="solutions">
+  <div class="inner">
+    <h2>Four solutions live, two on the way. One department.</h2>
+    <p class="lede2">All on one kernel: official records underneath, fixed rules for anything with a date or a number in it, hard limits on what the AI may do without you, and the same lawyers behind every one. Start with one, and the department grows from there.</p>
+    <div class="vaults">
+      <div class="vault v-contract" id="contracts"><div class="name">ContractVault <span class="tag">New</span></div><div class="area">Contracts</div><p>Their paper reviewed against your precedents and back the same day with the deviations flagged. Yours drafted from your templates. Every agreement tracked through signature, renewal and the notice window nobody was counting.</p><a href="#access">See it on your contracts</a></div>
+      <div class="vault v-privacy" id="privacy"><div class="name">PrivacyVault</div><div class="area">Privacy, data and FOI</div><p>Subject access requests, FOI and the ICO handled from receipt to response: screened, gathered, redacted and packaged for your approval, the statutory clock counted from the moment the request lands.</p><a href="https://dsar-readiness.vercel.app/">Assess your readiness</a></div>
+      <div class="vault v-entity" id="entity"><div class="name">EntityVault</div><div class="area">Entity management and company secretarial</div><p>Registers, filings, resolutions and minutes kept current across the group, drafted from the record and reconciled with Companies House before anything is filed.</p><a href="#access">See it on your group</a></div>
+      <div class="vault v-brand" id="brand"><div class="name">BrandVault</div><div class="area">Trademarks and designs</div><p>Your portfolio managed: deadlines tracked, threats watched, each renewal weighed against commercial evidence before you decide. Bree, its AI paralegal, works in your Slack from day one.</p><a href="https://www.getbrandvault.com">Show me my portfolio</a></div>
+      <div class="vault soon v-work" id="work"><div class="name">Employment <span class="tag">Coming soon</span></div><div class="area">Employment law and HR process</div><p>Contracts, handbooks and policies kept current, and the letters, meetings and consultations that HR issues must follow, prepared and tracked on the same model. Name to follow.</p><a href="#access">Tell us if this is where it hurts</a></div>
+      <div class="vault soon v-inno" id="inno"><div class="name">InnoVault <span class="tag">Coming soon</span></div><div class="area">Patents and know-how</div><p>Annuities, deadlines and office actions across jurisdictions, plus the register of what you know that nobody else does: trade secrets identified, documented and protected. In private beta with early portfolios.</p><a href="#access">Register interest</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="inner">
+    <h2>Type your company name. The department is already built.</h2>
+    <div class="build">
+      <div>
+        <p class="lede2">For the company with no lawyer yet, AiLA arrives with the documents, terms and precedents proven across many companies and adjusted to yours, running from the first week rather than after the year a first hire would spend assembling them. For the company with a GC, it starts from what's already public and asks for nothing you have to send.</p>
+        <div class="field"><input type="text" placeholder="Your company name" aria-label="Company name" id="co"><button type="button" id="go">Build it</button></div>
+        <p class="quiet">Illustrative. On the real thing, this pulls your entity from Companies House and your marks from the registries.</p>
+      </div>
+      <div class="stage" aria-label="Illustrative provisioning">
+        <div class="row v-entity"><div><b>Entity found</b><small>Companies House record, officers, filing dates</small></div><span class="st">Waiting</span></div>
+        <div class="row v-brand"><div><b>Marks matched</b><small>Registrations across UKIPO, EUIPO, USPTO, WIPO</small></div><span class="st">Waiting</span></div>
+        <div class="row v-privacy"><div><b>Privacy desk stood up</b><small>Request intake, statutory clocks, ICO channel</small></div><span class="st">Waiting</span></div>
+        <div class="row"><div><b>Seats created</b><small>Its own inbox, a seat in Slack or Teams, access to the shared drive and calendar</small></div><span class="st">Waiting</span></div>
+        <div class="row v-contract"><div><b>Precedents loaded</b><small>Your positions, or proven defaults until you set them</small></div><span class="st">Waiting</span></div>
+        <div class="row"><div><b>Your desk</b><small>Everything in flight, sign-off queue, audit trail</small></div><span class="st">Waiting</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="colleague">
+  <div class="inner">
+    <h2>Set up like a colleague, not a system</h2>
+    <p class="lede2">AiLA joins the company the way a new hire does: its own email address, a seat in Slack or Teams, access to the shared drive and the calendar. Correspondence reaches it directly, the work is filed where your documents already live, and decisions come to you in the channel you're already in. There is no dashboard you have to remember to check. The desk is there when you want depth; you never have to log in to stay abreast.</p>
+    <div class="seats">
+      <div class="seat"><b>Its own inbox</b><p>Registry letters, subject access requests, the counterparty's paper and the regulator's correspondence go to AiLA's address, or are forwarded to it. It reads, classifies and matches each one to the right matter, and drafts the reply for your sign-off.</p><span class="addr">legal@yourcompany.com</span></div>
+      <div class="seat"><b>A seat in Slack or Teams</b><p>Ask in plain English and get the answer in the thread, with the evidence attached. Approve or decline there too. In BrandVault that colleague is Bree, its AI trademark paralegal; every Vault answers in the same channel.</p><span class="addr">#legal</span></div>
+      <div class="seat"><b>Your documents, your folders</b><p>It reads your precedents from Google Drive or SharePoint and files what it produces back where you keep things, versioned, so nothing lives in a system only AiLA can see. The calendar carries the deadlines it is counting.</p><span class="addr">Drive · SharePoint · Calendar</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="escalation">
+  <div class="inner">
+    <h2>We resolve contentious matters in a way software never will</h2>
+    <p class="lede2">Every solution carries the same promise. When a matter exceeds the routine, an opposition, a contested access request, a difficult regulator, AiLA's own lawyers take it on, working AI-assisted with the full history already in the system. Escalation starts with context, not with a briefing call and a discovery invoice.</p>
+    <div class="scope"><strong>What escalation covers:</strong> contentious matters before the registries and regulators, in each solution's domain. Where a matter heads to court, we prepare the file and work alongside your chosen representatives.</div>
+  </div>
+</section>
+
+<section class="cream" id="trust">
+  <div class="inner">
+    <h2>What AiLA will never do</h2>
+    <p class="lede2">Handing legal work to AI takes trust. So the limits are built in, and every one of them can be checked.</p>
+    <div class="never">
+      <div><b>Send or file without you</b><p>Nothing consequential leaves without your sign-off, or an authority you've set in writing.</p></div>
+      <div><b>Guess at a date or a number</b><p>Deadlines and arithmetic come from deterministic rules built per jurisdiction. The model reads and drafts; it never calculates.</p></div>
+      <div><b>Invent what it doesn't know</b><p>Answers are grounded in the official record and traceable to it. Where a rule isn't verified, the deadline is flagged, not guessed.</p></div>
+      <div><b>Act without a log</b><p>Every action taken on your behalf is recorded with a reason and available for review.</p></div>
+      <div><b>Train on your matters</b><p>Your data is never used to train models. All data is processed and stored in compliance with UK and EU GDPR.</p></div>
+      <div><b>Leave you alone in a dispute</b><p>When it turns contentious, our lawyers take it, on a portfolio they already know.</p></div>
+    </div>
+    <p class="quiet">Security-reviewed by Baker McKenzie and DLA Piper; part of Barclays Eagle Labs and Lawtech UK. AiLA also convenes Legaltech Field Notes, a bi-monthly London gathering of lawyers and builders.</p>
+  </div>
+</section>
+
+<section id="team">
+  <div class="inner">
+    <h2>Built by people who've done this work</h2>
+    <div class="people">
+      <div class="person"><div class="p-name">Mark Kingsley-Williams</div><div class="p-role">Founder</div><p>Mark is an IP lawyer with a background in economics and tech startups. He built the first high-volume online trademark service in 2008, and within two years it was filing more UK and EU trademarks than any other firm, while he represented clients in disputes before the UKIPO and appeals before the Appointed Person. He went on to found LawPanel, an IP management software firm used by trademark practitioners in the UK and US that passed technical evaluations with several top-five global law firms. AiLA is the third act: the AI legal department, combining AI models harnessed to legal work with lawyers who stand behind it.</p></div>
+      <div class="person"><div class="p-name">Sebastian Guerrero</div><div class="p-role">Lead Developer</div><p>Sebastian is a solution architect and full-stack engineer with twenty-five years of shipping production software, most recently as a Solution Architect at Chevron, designing cloud, data and AI systems on Azure. Before that he spent nearly seven years as lead developer at LawPanel, where he built the cloud IP management platform used by trademark practitioners in the UK and US. At AiLA he leads engineering, harnessing AI models to the deterministic rules, official data and approval gates that legal work depends on.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="faq">
+  <div class="inner">
+    <h2>Questions you may have</h2>
+    <div class="faq">
+      <details><summary>Is AiLA a law firm?</summary><p>No, and for the work it covers it doesn't need to be. The routine and contentious registry and regulatory work AiLA handles is not reserved legal activity in the UK. Where a matter does head to court, AiLA prepares the file and works alongside your chosen representatives.</p></details>
+      <details><summary>Who actually does the work?</summary><p>The AI does the volume: the monitoring, the drafting, the deadline tracking, the correspondence. You approve everything consequential before it goes anywhere, or delegate it within limits you set. When a matter escalates, AiLA's lawyers take it, working with the AI rather than instead of it.</p></details>
+      <details><summary>We have a legal team. Is this only for companies without one?</summary><p>No. A team of five hit by a diligence request, a restructuring and a product launch in the same quarter has the same problem as a GC of one: more obligations than can be handled. AiLA takes the routine layer permanently and absorbs the surges on top, on the same retainer, so the team stops staffing for the peak. Most legal departments already buy overflow this way; this is overflow that knows your business.</p></details>
+      <details><summary>Do I have to log in to keep up?</summary><p>No. AiLA works in the tools you already use: its own inbox for correspondence, a seat in Slack or Teams for questions and approvals, your shared drive for the documents. Decisions reach you where you are. The desk exists for when you want the full picture, not as a place you're required to visit.</p></details>
+      <details><summary>What does delegated authority mean?</summary><p>You set the limits in writing: which document types, which thresholds, which counterparties. Within them, AiLA acts and logs every action with its reasons. Outside them, everything comes to you. You can narrow or widen the authority at any time.</p></details>
+      <details><summary>What does it cost?</summary><p>Each solution is priced as a monthly retainer based on scope and volume, the way an accountant charges rather than the way software does. Nothing is charged by seat or by the hour. Escalated matters are quoted individually before any work begins.</p></details>
+      <details><summary>We're a public body. Does this work for us?</summary><p>Yes, and in the case of FOI it can only work for you, since FOI applies solely to public authorities. PrivacyVault is built for the request volumes and statutory deadlines that information governance teams carry.</p></details>
+      <details><summary>Can we take one solution without the others?</summary><p>Yes. Each solution stands alone, with its own onboarding and pricing, and the escalation promise comes with every one of them.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="access">
+  <div class="inner">
+    <h2>Put the routine under management</h2>
+    <p class="lede2">Tell us where the pain and delays are worst, and we'll show you what it looks like handled. Within a working day.</p>
+    <form class="form" action="https://formspree.io/f/mjgerjao" method="POST">
+      <label for="a-name">Your name</label><input id="a-name" type="text" name="name" required autocomplete="name">
+      <label for="a-email">Work email</label><input id="a-email" type="email" name="email" required autocomplete="email">
+      <label for="a-company">Organisation</label><input id="a-company" type="text" name="company" required autocomplete="organization">
+      <label for="a-area">Where it hurts</label><input id="a-area" type="text" name="area" placeholder="contracts, privacy, entities, trademarks">
+      <input type="hidden" name="_subject" value="AiLA access request">
+      <button type="submit">Request access</button>
+      <p class="note">We come back to you with your portfolio, entity or contracts already loaded.</p>
+    </form>
+  </div>
+</section>
+
+<div class="band thin" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<footer>
+  <span>AiLA: The AI legal department. Routine work done, your decisions prepared, contentious matters resolved.</span>
+  <span>ContractVault · PrivacyVault · EntityVault · BrandVault · Employment and InnoVault coming · <a href="/privacy.html" style="color:inherit">Privacy</a> · © 2026 AiLA AI Ltd</span>
+</footer>
+
+<div class="toast" id="toast" aria-live="polite"><b></b><small></small></div>
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // desk
+  const matters = document.querySelectorAll('.matter'); const waiting = document.getElementById('waiting'); let n = 0;
+  matters.forEach(m => setTimeout(() => { m.classList.add('in'); if (!m.classList.contains('auto')) { n++; waiting.textContent = n; } }, reduce ? 0 : Number(m.dataset.delay)));
+  document.querySelectorAll('.btn.approve').forEach(b => b.addEventListener('click', e => { e.target.closest('.matter').classList.add('done'); n = Math.max(0, n-1); waiting.textContent = n; }));
+  // the desk keeps working after the opening
+  const arrivals = [
+    {v:'v-entity', t:'Series B closing, resolutions and share issue', m:'Board and shareholder resolutions drafted from the term sheet, SH01 prepared, register reconciled against Companies House. One pre-emption waiver is still needed from a minority holder; the letter is drafted.', time:'Completion Monday', ev:[{c:'ev ok',t:'Register reconciled'},{c:'ev warn',t:'One waiver outstanding'},{c:'ev',t:'SH01 ready'}], b:['Approve pack','Open']},
+    {v:'v-contract', t:'Auto-renewal, Cloudspan, £180k a year', m:'Renews for three years on the old pricing unless notice is served by the 18th. Market rate is 22% lower; notice to renegotiate is drafted, with exit as the fallback.', time:'Notice deadline in 9 days', ev:[{c:'ev warn',t:'9 days to serve notice'},{c:'ev ok',t:'Saving modelled'},{c:'ev',t:'Notice drafted'}], b:['Serve notice','Let it renew']},
+    {v:'v-brand', t:'Opposition window, MERIDIAM v your MERIDIAN', m:'A competitor has applied for a near-identical mark in your class. Grounds to oppose are strong; the notice is drafted. Miss the window and the argument moves to a tribunal.', time:'6 days to file', ev:[{c:'ev warn',t:'6 days left'},{c:'ev ok',t:'Similarity 92/100'},{c:'ev',t:'Notice drafted'}], b:['File opposition','Escalate to AiLA Legal']},
+    {v:'v-brand', t:'Registry letter, EUIPO office action', m:'Read, matched to the right mark, response drafted', time:'Just now', chips:['Class 9 objection','Response drafted']},
+    {v:'v-privacy', t:'DPIA request, new analytics vendor', m:'Screened; two risks flagged, mitigations proposed', time:'Just now', chips:['Two risks','Mitigations drafted']},
+    {v:'v-contract', t:'Supplier terms, Marlow Logistics', m:'Reviewed against your precedents; standard, one deviation within tolerance', time:'Just now', chips:['Standard terms','One deviation']},
+    {v:'v-entity', t:'Director appointment, AP01', m:'Drafted from the board minute; register updated pending filing', time:'Just now', chips:['AP01 ready','Register updated']},
+  ];
+  let ai = 0;
+  const desk = document.querySelector('.desk');
+  function arrive(){
+    const a = arrivals[ai % arrivals.length]; ai++;
+    const el = document.createElement('div');
+    el.className = 'matter ' + a.v;
+    const evs = a.ev ? a.ev.map(e=>'<span class="'+e.c+'">'+e.t+'</span>').join('') : a.chips.map(c=>'<span class="ev">'+c+'</span>').join('');
+    const b = a.b || ['Approve','Open'];
+    el.innerHTML = '<div class="m-top"><div class="m-title">'+a.t+'</div><div class="m-time">'+a.time+'</div></div><div class="m-body">'+a.m+'</div><div class="m-evidence">'+evs+'</div><div class="m-actions"><button class="btn approve">'+b[0]+'</button><button class="btn">'+b[1]+'</button></div>';
+    const first = desk.querySelector('.matter');
+    desk.insertBefore(el, first);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
+    n++; waiting.textContent = n;
+    el.querySelector('.btn.approve').addEventListener('click', e => { el.classList.add('done'); n = Math.max(0, n-1); waiting.textContent = n; });
+    const all = desk.querySelectorAll('.matter');
+    if (all.length > 8) all[all.length-1].remove();
+  }
+  if (!reduce) { setTimeout(arrive, 12000); setInterval(arrive, 26000); }
+  // toast: things done, one at a time
+  const done = [
+    {v:'v-contract', b:'Notice served on Cloudspan.', s:'Three-year auto-renewal stopped. £39k a year saved.'},
+    {v:'v-brand', b:'Opposition filed, MERIDIAM.', s:'Four days inside the window. Now with AiLA Legal.'},
+    {v:'v-privacy', b:'ICO notification sent.', s:'Nineteen hours before the 72-hour deadline.'},
+    {v:'v-entity', b:'Confirmation statement filed.', s:'Companies House receipt attached to the record.'},
+    {v:'v-contract', b:'Vendor DPA countersigned.', s:'Under standing authority. Logged with reasons.'},
+  ];
+  const toast = document.getElementById('toast'); let ti = 0;
+  function showToast(){
+    const d = done[ti % done.length]; ti++;
+    toast.className = 'toast ' + d.v; toast.querySelector('b').textContent = d.b; toast.querySelector('small').textContent = d.s + ' Illustrative.';
+    requestAnimationFrame(()=>toast.classList.add('show'));
+    setTimeout(()=>toast.classList.remove('show'), 6000);
+  }
+  if (!reduce) { setTimeout(showToast, 9000); setInterval(showToast, 34000); }
+  // week
+  document.querySelectorAll('.week li').forEach(li => setTimeout(() => li.classList.add('tick'), li.classList.contains('weekend') ? 8200 : 3200 + Number(li.dataset.i) * 600));
+  // ticker
+  const lines = document.querySelectorAll('#ticker div'); let i = 0;
+  setInterval(() => { lines[i].classList.remove('show'); i = (i+1) % lines.length; lines[i].classList.add('show'); }, 3400);
+  // spine follows scroll
+  const map = [['#inno','.s-inno'],['#work','.s-work'],['#brand','.s-brand'],['#entity','.s-entity'],['#privacy','.s-privacy'],['#contracts','.s-contract']];
+  const spineLinks = document.querySelectorAll('.spine a');
+  function spine(){
+    const y = window.scrollY + window.innerHeight * .4; let hit = '.s-aila';
+    for (const [sel, cls] of map){ const el = document.querySelector(sel); if (el && y >= el.getBoundingClientRect().top + window.scrollY) { hit = cls; break; } }
+    spineLinks.forEach(a => a.classList.toggle('on', a.classList.contains(hit.slice(1))));
+  }
+  window.addEventListener('scroll', spine, {passive:true}); spine();
+  // provisioning
+  document.getElementById('go').addEventListener('click', () => {
+    const rows = document.querySelectorAll('.stage .row');
+    rows.forEach((r, k) => { r.classList.remove('on'); r.querySelector('.st').textContent = 'Waiting'; setTimeout(() => { r.classList.add('on'); r.querySelector('.st').textContent = 'Done'; }, reduce ? 0 : 400 + k * 650); });
+  });
+</script>
+<script type="text/javascript">
+_linkedin_partner_id = "8728946";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8728946&fmt=gif" />
+</noscript>
+</body>
+</html>
