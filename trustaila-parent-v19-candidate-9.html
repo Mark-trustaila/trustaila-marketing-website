@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The external AI legal department, with you in control. AiLA</title>
+<meta name="description" content="AiLA is the external AI legal department. AI that already knows your company does the routine legal work around the clock, so nothing waits. Nothing to adopt, your lawyer stays in charge, and our own lawyers take any matter that escalates.">
+<meta property="og:title" content="Sole general counsel? Now you have a department. AiLA, the AI legal department">
+<meta property="og:description" content="The external AI legal department. Every date and obligation held, the work that needs you on your desk each morning, and our own lawyers for any dispute.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.trustaila.com/">
+<meta property="og:image" content="https://www.trustaila.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --ink:#101828; --muted:#4a525c; --line:#e3e5e9;
+    --navy:#0b264d; --navy-soft:#e7ecf3;
+    --burgundy:#4e0c19; --burgundy-soft:#f3e7e9;
+    --steel:#416890; --steel-soft:#e6edf4;
+    --ochre:#dba644; --ochre-deep:#b97b29; --ochre-soft:#f9f0da;
+    --indigo:#4f46e5; --indigo-soft:#eceafc;
+    --cream:#ede8d3; --cream-deep:#ddd6bd;
+    --slate:#3f444d; --slate-soft:#e9eaec; --pale:#7c8997; --pale-soft:#eef0f2;
+    --green:#15803d; --green-soft:#e9f7ee; --red:#9b2c2c;
+    --spine:34px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;padding-left:var(--spine)}
+  a{color:inherit}
+  h1,h2{letter-spacing:-.03em;font-weight:800;line-height:1.06}
+  h2{font-size:clamp(28px,3.2vw,42px);max-width:20em}
+  .lede2{margin-top:22px;max-width:38em;color:var(--muted);font-size:17px}
+  .lede2+.lede2{margin-top:14px}
+
+  /* The spine: one stripe per Vault, navy for AiLA itself; active stripe widens on scroll */
+  .spine{position:fixed;left:0;top:0;bottom:0;width:var(--spine);display:flex;flex-direction:column;z-index:20}
+  .spine a{flex:1;display:block;position:relative;transition:flex .5s cubic-bezier(.2,.8,.2,1)}
+  .spine a.on{flex:2.6}
+  .spine a span{position:absolute;left:100%;top:50%;transform:translateY(-50%) rotate(180deg);writing-mode:vertical-rl;font-size:11px;font-weight:700;letter-spacing:.02em;color:#fff;padding:8px 6px;opacity:0;transition:opacity .3s;pointer-events:none;background:inherit;border-radius:0 6px 6px 0}
+  .spine a:hover span,.spine a.on span{opacity:1}
+  .s-aila{background:var(--navy)} .s-work{background:var(--pale);opacity:.45} .s-inno{background:var(--slate)}
+  .spine a.soon span::after{content:" · soon";font-weight:500} .s-contract{background:var(--burgundy)} .s-privacy{background:var(--steel)} .s-entity{background:var(--ochre)} .s-brand{background:var(--indigo)}
+
+  header{display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;border-bottom:1px solid var(--line)}
+  .logo{text-decoration:none;background:var(--navy);border-radius:4px;padding:6px 12px;display:inline-flex;align-items:center}
+  nav{display:flex;align-items:center;gap:26px;font-size:14px;font-weight:500}
+  nav a{color:var(--muted);text-decoration:none}
+  nav a:hover{color:var(--ink)}
+  nav a.cta{color:#fff;background:var(--navy);padding:10px 18px;border-radius:8px}
+  nav .dd{position:relative}
+  nav .dd>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg);margin-left:8px;vertical-align:3px}
+  nav .menu{position:absolute;top:100%;left:0;margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px;min-width:250px;box-shadow:0 14px 40px rgba(11,38,77,.12);display:none;flex-direction:column;gap:2px;z-index:30}
+  nav .menu a{display:block;padding:10px 12px;border-radius:8px;margin:0;color:var(--ink)}
+  nav .menu a:hover{background:var(--navy-soft)}
+  nav .dd:hover .menu,nav .dd:focus-within .menu{display:flex}
+
+  section{padding:15vh 6vw;border-top:1px solid var(--line)}
+  section .inner{max-width:1240px;margin:0 auto}
+  .cream{background:var(--cream)}
+
+
+  .bline{margin-top:22px;font-size:14.5px;color:var(--muted);max-width:36em;line-height:1.6}
+  .bline b{color:var(--navy);font-weight:700}
+  .ctas{margin-top:30px;display:flex;align-items:center;gap:22px}
+  .btn-primary{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:13px 22px;border-radius:9px}
+  .btn-link{color:var(--ink);font-weight:600;font-size:14.5px;text-decoration:none;border-bottom:1.5px solid var(--line)}
+  .btn-link:hover{border-bottom-color:var(--navy)}
+  .whofor{padding:0 0 12vh;border-top:none}
+  .who-grid{max-width:1240px;margin:0 auto;padding:0 6vw;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:0 7vw;align-items:start}
+  .who-lab{font-size:13px;line-height:1.3;font-weight:600;color:var(--navy);letter-spacing:.02em;margin:0 0 14px}
+  .whofor .doors{margin-top:0;max-width:none;display:flex;flex-wrap:wrap;gap:14px}
+  .whofor .door{flex:0 1 auto;width:auto;max-width:300px;padding:14px 18px;transition:background .15s,border-color .15s}
+  .whofor .door.active{background:var(--navy-soft);border-color:var(--navy)}
+  .whofor .door.active strong{color:var(--navy)}
+  .whofor .door span{max-width:26em}
+  .who-single{grid-template-columns:1fr}
+  .who-single > div:empty{display:none}
+  .doors-who .door{padding:16px 16px}
+  .doors-who .door strong{font-size:14.5px}
+  .doors-who .door span{font-size:12.5px}
+  .whofor .week{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:28px;row-gap:14px;border:0;padding:0;margin:0;font-size:14px}
+  .whofor .week li{white-space:normal;align-items:flex-start;line-height:1.4}
+  .whofor .week li .box{margin-top:1px}
+  .whofor .week li.lab{grid-column:1 / -1;margin:0;font-size:13px;line-height:1.3;letter-spacing:.02em;font-weight:600;color:var(--navy)}
+  .whofor .week{row-gap:14px}
+  .week-who li.lab{grid-column:1 / -1;margin-bottom:2px}
+  @media(max-width:960px){.who-grid{grid-template-columns:1fr;gap:36px}.doors-who{grid-template-columns:1fr}.week-who{grid-template-columns:1fr}}
+
+  .list .matter{padding:12px 14px;margin-top:8px}
+  .list .m-title{font-size:13.5px;font-weight:600}
+  .list .m-time{font-size:11.5px}
+  .strip{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .strip .matter{opacity:1;transform:none;margin:0}
+  .fold-centre{grid-template-columns:1fr;text-align:center}
+  .fold-centre .copy{align-items:center}
+  .fold-centre h1,.fold-centre .lede,.fold-centre .bline{margin-left:auto;margin-right:auto}
+  .fold-centre .ctas{justify-content:center}
+  .fold-top{grid-template-columns:1fr;min-height:0}
+  .weekhero{background:var(--cream);border:1px solid var(--cream-deep);border-radius:18px;padding:30px 32px}
+  .weekhero .week{display:grid;grid-template-columns:1fr;gap:16px;font-size:16px;border:0;padding:0}
+  .weekhero .week li.lab{font-size:13px;margin-bottom:6px}
+  .weekhero .box{width:22px;height:22px}
+  .weekhero .box::after{left:6px;top:3px;width:7px;height:12px}
+  @media(max-width:960px){.strip,.doors-who{grid-template-columns:1fr}.fold-centre{text-align:left}.ctas{flex-wrap:wrap}}
+
+  /* Access modal */
+  .modal{position:fixed;inset:0;z-index:50;background:rgba(11,38,77,.45);display:flex;align-items:center;justify-content:center;padding:24px}
+  .modal[hidden]{display:none}
+  .modal-card{background:#fff;border-radius:16px;padding:32px 34px 28px;width:100%;max-width:460px;position:relative;box-shadow:0 30px 80px rgba(11,38,77,.25)}
+  .modal-card h3{font-size:22px;font-weight:800;letter-spacing:-.02em}
+  .modal-lede{margin-top:10px;font-size:14.5px;color:var(--muted)}
+  .modal-form{margin-top:6px;max-width:none}
+  .modal-x{position:absolute;top:14px;right:16px;background:none;border:0;font-size:26px;line-height:1;color:var(--muted);cursor:pointer}
+  .modal-close{margin-top:22px}
+  .modal-err{color:var(--red)}
+  body.modal-open{overflow:hidden}
+  .cta-line{margin-top:34px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .cta-line .btn-primary{padding:12px 20px;font-size:14.5px}
+  .cta-line .why-p,.cta-line p{margin:0;font-size:14.5px;color:var(--muted)}
+  section.dark .cta-line .btn-primary{background:#fff;color:var(--navy)}
+
+  /* Ambient motion */
+  .toast{position:fixed;right:22px;bottom:22px;z-index:30;background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:12px;padding:12px 16px;max-width:340px;box-shadow:0 14px 40px rgba(11,38,77,.14);font-size:13.5px;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .4s;pointer-events:none}
+  .toast.show{opacity:1;transform:none}
+  .toast b{display:block;font-size:13.5px} .toast small{color:var(--muted);font-size:12px}
+  .toast.v-inno{border-left-color:var(--slate)} .toast.v-contract{border-left-color:var(--burgundy)} .toast.v-privacy{border-left-color:var(--steel)} .toast.v-entity{border-left-color:var(--ochre)} .toast.v-brand{border-left-color:var(--indigo)}
+  .voices{animation:fadein 1s ease 6s both;overflow:hidden;border-bottom:1px solid var(--line);background:#fff;padding:22px 0;white-space:nowrap}
+  .voices .track{display:inline-block;animation:slide 70s linear infinite;font-size:14px;color:var(--muted)}
+  .voices .track span{margin:0 34px 0 0;display:inline-block}
+  .voices .track span::before{content:"\201C";color:var(--ochre-deep);margin-right:2px} .voices .track span::after{content:"\201D";color:var(--ochre-deep);margin-left:2px}
+  .voices .track i{font-style:normal;font-size:11px;color:#9aa1ab;margin-right:34px}
+  @keyframes fadein{from{opacity:0}to{opacity:1}}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .spine a.on{animation:breathe 4s ease-in-out infinite}
+  @keyframes breathe{0%,100%{filter:brightness(1)}50%{filter:brightness(1.18)}}
+  @media (prefers-reduced-motion: reduce){.voices .track{animation:none}.spine a.on{animation:none}.toast{display:none}.week li,.week .box,.week .box::after,.week li.weekend .txt s,.week li.weekend .txt::after{transition:none}}
+
+  /* Palette at large scale: a horizontal band, the spine laid flat */
+  .band{height:14px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr 1fr 1fr;border-top:1px solid var(--line)}
+  .band i:nth-child(6){background:var(--slate);opacity:.45} .band i:nth-child(7){background:var(--pale);opacity:.45}
+  .band i{display:block}
+  .band i:nth-child(1){background:var(--navy)} .band i:nth-child(2){background:var(--burgundy)} .band i:nth-child(3){background:var(--steel)} .band i:nth-child(4){background:var(--ochre)} .band i:nth-child(5){background:var(--indigo)}
+  .band.thin{height:6px;border:none}
+
+  /* Narrow strip: why legal can leave the building now */
+  .why{padding:13vh 6vw;border-top:1px solid var(--line)}
+  .why .inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:5vw;align-items:start}
+  .why h2{font-size:clamp(24px,2.6vw,34px)}
+  .why p{color:var(--muted);font-size:16px;max-width:38em}
+  .why p+p{margin-top:12px}
+  .why .paper{margin-top:18px;padding:16px 18px;border-left:4px solid var(--navy);background:var(--navy-soft);border-radius:0 10px 10px 0;font-size:14.5px;max-width:38em}
+  .why .paper a{font-weight:700;color:var(--navy)}
+  .why .paper small{display:block;margin-top:6px;color:var(--muted);font-size:13px}
+
+  /* Dark inversion: the watch section on navy, palette accents on it */
+  section.dark{background:var(--navy);color:#fff;border-top:none}
+  section.dark h2{color:#fff} section.dark .lede2{color:#c9d5e8}
+  section.dark .clock{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12);color:#fff}
+  section.dark .clock small{color:#b7c4da} section.dark .days small{color:#b7c4da}
+  section.dark .clock.v-inno{border-left-color:#b9bec7} section.dark .clock.v-privacy{border-left-color:#8fb3dc} section.dark .clock.v-entity{border-left-color:var(--ochre)} section.dark .clock.v-brand{border-left-color:#9b94f0} section.dark .clock.v-contract{border-left-color:#c86b7a}
+  section.dark .caught{color:#7fd6a1}
+  section.dark .inversion{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  section.dark .inversion p{color:var(--muted)}
+
+  /* ---- FOLD ---- */
+  .fold{max-width:1240px;margin:0 auto;padding:7vh 6vw 6vh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:0 7vw;align-items:stretch;border-top:none}
+  .fold > .copy{display:flex;flex-direction:column;justify-content:flex-start}
+  .desk-wrap{position:relative;min-height:0}
+  .points{margin-top:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .points div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+  .points h3{font-size:16px;font-weight:700;margin:0 0 8px;letter-spacing:-.01em}
+  .points p{margin:0;font-size:14.5px;line-height:1.55;color:var(--muted)}
+  @media(max-width:960px){.points{grid-template-columns:1fr}}
+  .hero-slack{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 20px 60px rgba(11,38,77,.08);overflow:hidden;font-size:13px}
+  .hs-head{display:flex;justify-content:space-between;align-items:center;padding:11px 18px;border-bottom:1px solid var(--line);font-weight:700;font-size:13.5px}
+  .hs-head .hs-ws{font-weight:400;color:var(--muted);font-size:12px}
+  .hs-body{padding:16px 18px 6px}
+  .hs-foot{padding:6px 18px 12px;font-size:11.5px;color:var(--muted)}
+  .hero-slack .p-sl-btn.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+  @media (min-width:1000px){.desk-wrap{min-height:432px}}
+  .week{list-style:none;margin:0;padding:0 0 28px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 36px;font-size:14px;line-height:1.3;color:var(--muted);border-bottom:1px solid var(--line)}
+  .week li{white-space:nowrap}
+  @media(max-width:1440px) and (min-width:961px){.fold .week{display:grid;grid-template-columns:repeat(2,max-content);column-gap:56px;row-gap:14px}}
+  .week li{display:flex;align-items:center;gap:10px;transition:color .4s}
+  .week li.lab{flex-basis:100%;grid-column:1 / -1;font-weight:600;color:var(--navy);font-size:13px;letter-spacing:.02em;margin-bottom:2px}
+  .week-s2{border-bottom:none;padding:0 0 30px;margin-bottom:4px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 22px;font-size:13px;color:var(--muted)}
+  .week-s2 li{white-space:nowrap;gap:8px}
+  .week-s2 li.lab{flex-basis:auto;margin:0 6px 0 0;font-size:12.5px}
+  .week-s2 .box{width:15px;height:15px;border-width:1.5px}
+  .week-s2 .box::after{left:4px;top:1px;width:5px;height:9px;border-width:0 2px 2px 0}
+  .box{width:19px;height:19px;border:1.5px solid #a9b0bb;border-radius:4px;flex-shrink:0;position:relative;background:#fff;transition:border-color .4s,background .4s}
+  .box::after{content:"";position:absolute;left:5px;top:2px;width:6px;height:10px;border-bottom:2px solid var(--navy);border-right:2px solid var(--navy);transform:rotate(45deg) scale(0);transform-origin:center;opacity:0;transition:opacity .25s,transform .35s ease-out}
+  .week li.tick .box{border-color:var(--navy);background:var(--navy-soft)}
+  .week li.tick .box::after{opacity:1;transform:rotate(45deg) scale(1)}
+  .week li.tick{color:var(--ink)}
+  .week li.weekend .txt s{text-decoration-color:var(--red);text-decoration-thickness:1.5px;color:#7a2f22}
+  .week li.weekend .txt s{transition:opacity .6s}
+  .week li.weekend.tick .txt s{opacity:0;position:absolute;pointer-events:none}
+  .week li.weekend .txt{position:relative}
+  .week li.weekend .txt::after{content:"back";color:var(--green);font-weight:600;opacity:0;transition:opacity .6s .4s}
+  .week li.weekend.tick .txt::after{opacity:1}
+  .week li.weekend .box::after{border-color:var(--green)}
+  .week li.weekend.tick .box{border-color:var(--green);background:var(--green-soft)}
+  .cat{font-size:13.5px;font-weight:600;color:var(--navy);letter-spacing:.02em;margin-bottom:16px}
+  h1{font-size:clamp(36px,3.5vw,54px);max-width:13em}
+  .lede{margin-top:22px;font-size:17px;color:var(--muted);max-width:34em;line-height:1.58}
+  .lede.pull{margin-top:18px;color:var(--ink);font-weight:600;font-size:18px}
+  .benefits{margin-top:30px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;max-width:720px}
+  .benefits div{font-size:13.5px;color:var(--muted);line-height:1.5}
+  .benefits b{display:block;color:var(--navy);font-size:15px;font-weight:700;margin-bottom:4px;letter-spacing:-.01em}
+  .doors{margin-top:30px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;max-width:700px}
+  .door{display:block;text-decoration:none;border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;transition:border-color .15s}
+  .door:hover{border-color:var(--navy)}
+  .door strong{display:block;font-size:15px;font-weight:700}
+  .door span{display:block;margin-top:4px;font-size:13px;color:var(--muted)}
+  .door.primary{background:var(--navy);border-color:var(--navy);color:#fff}
+  .door.primary span{color:#c9d5e8}
+  .quiet{margin-top:20px;font-size:13.5px;color:var(--muted)}
+  .quiet a{color:var(--ink)}
+
+  .desk{position:absolute;inset:0;background:var(--cream);border:1px solid var(--cream-deep);border-radius:18px;padding:24px 28px 24px;overflow-y:auto;overscroll-behavior:contain}
+  .desk::-webkit-scrollbar{width:8px} .desk::-webkit-scrollbar-thumb{background:var(--cream-deep);border-radius:99px}
+  .desk-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;margin-bottom:14px}
+  .desk-head .count{margin-left:auto}
+  .desk-head .count{white-space:nowrap}
+  .m-did{font-size:11.5px;font-weight:700;letter-spacing:.02em;color:var(--navy);margin-bottom:4px}
+  .desk-sum{font-size:13.5px;line-height:1.45;color:var(--ink);margin:0 0 4px;max-width:36em}
+  .desk-head h2{font-size:15px;font-weight:700;letter-spacing:0;max-width:none}
+  .desk-head .count{font-size:12.5px;color:var(--muted)} .desk-head .count b{color:var(--ink)}
+  .matter{background:#fff;border:1px solid var(--cream-deep);border-radius:12px;padding:16px 20px;margin-top:12px;border-left:4px solid var(--line);opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
+  .matter.in{opacity:1;transform:none}
+  .desk.desk-still .matter{opacity:1;transform:none}
+  .desk:not(.settled) .m-evidence,.desk:not(.settled) .m-actions{display:none}
+  .matter.v-inno{border-left-color:var(--slate);background:linear-gradient(90deg,var(--slate-soft) 0,#fff 34%)}
+  .matter.v-contract{border-left-color:var(--burgundy);background:linear-gradient(90deg,var(--burgundy-soft) 0,#fff 34%)}
+  .matter.v-privacy{border-left-color:var(--steel);background:linear-gradient(90deg,var(--steel-soft) 0,#fff 34%)}
+  .matter.v-entity{border-left-color:var(--ochre);background:linear-gradient(90deg,var(--ochre-soft) 0,#fff 34%)}
+  .matter.v-brand{border-left-color:var(--indigo);background:linear-gradient(90deg,var(--indigo-soft) 0,#fff 34%)}
+  .desk-head h2::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--navy);margin-right:8px;vertical-align:-1px}
+  .trail{display:flex;flex-wrap:wrap;gap:0 6px;margin-top:6px;font-size:11.5px;color:var(--muted);line-height:1.5}
+  .trail .t{display:inline-flex;align-items:center;gap:5px}
+  .trail .t::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);flex:none}
+  .trail .t+.t::after{content:"";order:-1;width:14px;height:1px;background:var(--line);margin:0 2px 0 0}
+  .trail .t.now{color:var(--navy);font-weight:600}
+  .trail .t.now::before{background:#fff;border:2px solid var(--navy);width:5px;height:5px}
+  .m-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .m-title{font-size:14.5px;font-weight:700} .m-time{font-size:12px;color:var(--muted);white-space:nowrap}
+  .m-body{margin-top:8px;font-size:13.5px;color:var(--muted);line-height:1.55}
+  .m-evidence{margin-top:12px;display:flex;flex-wrap:wrap;gap:7px}
+  .ev{font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:99px;background:var(--cream);border:1px solid var(--cream-deep);color:var(--muted)}
+  .ev.ok{background:var(--green-soft);color:var(--green);border-color:#cfead8}
+  .ev.warn{background:var(--ochre-soft);color:var(--ochre-deep);border-color:#e9d6a6}
+  .m-actions{margin-top:14px;display:flex;gap:8px}
+  .btn{font-family:inherit;font-size:13px;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  .btn.approve{background:var(--navy);border-color:var(--navy);color:#fff}
+  .btn:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
+  .matter.done{background:var(--green-soft);border-color:#cfead8}
+  .matter.done .m-actions{display:none}
+  .matter.done .m-body::before{content:"Signed off. ";font-weight:700;color:var(--green)}
+  .matter.auto .m-body::before{content:"";}
+  .matter.auto .m-actions{display:none}
+  .matter.report{border-left-color:var(--navy);background:linear-gradient(90deg,var(--navy-soft) 0,#fff 34%)}
+  .matter.report .m-body::before{content:"Ready to send. ";font-weight:700;color:var(--navy)}
+  .desk-foot{margin-top:20px;display:flex;justify-content:space-between;gap:16px;font-size:12px;color:var(--muted)}
+  .desk-foot .count b{color:var(--ink)}
+  .live i{width:7px;height:7px;border-radius:99px;background:var(--green);display:inline-block;margin-right:7px;animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .ticker{margin-top:12px;font-size:13px;color:var(--muted);height:20px;position:relative;overflow:hidden}
+  .ticker div{position:absolute;left:0;right:0;opacity:0;transition:opacity .5s} .ticker div.show{opacity:1} .ticker b{color:var(--ink);font-weight:600}
+
+  /* ---- QUEUE (screen 2) ---- */
+  .strike{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:3px;color:var(--muted)}
+  .board{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .board.dash{display:block;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px 16px;font-size:13px;box-shadow:0 20px 60px rgba(11,38,77,.08)}
+  .dash-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+  .dash-cols .p-row{margin-left:0}
+  .dash-cols .p-sub2{margin-left:0}
+  @media(max-width:960px){.dash-cols{grid-template-columns:1fr}.dash-cols .p-pile:last-child h4{display:none}}
+  .col{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;min-height:220px}
+  .col h3{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:10px;display:flex;justify-content:space-between}
+  .card{border:1px solid var(--line);border-left:4px solid var(--line);border-radius:9px;padding:13px 14px;font-size:13px;margin-top:10px;background:#fff}
+  .card b{display:block;font-size:13.5px}
+  .card small{color:var(--muted)}
+  .card.v-contract{border-left-color:var(--burgundy)} .card.v-inno{border-left-color:var(--slate)} .card.v-privacy{border-left-color:var(--steel)} .card.v-entity{border-left-color:var(--ochre)} .card.v-brand{border-left-color:var(--indigo)}
+  .who{margin-top:40px;display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+  .who div{font-size:14px;color:var(--muted)} .who div b{display:block;color:var(--ink);font-size:14.5px;margin-bottom:3px}
+
+  /* ---- WATCH (screen 3) ---- */
+  .radar{margin-top:48px;display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:start}
+  .clocks{display:grid;gap:12px}
+  .clock{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;border-left:4px solid var(--line)}
+  .clock.v-inno{border-left-color:var(--slate)} .clock.v-privacy{border-left-color:var(--steel)} .clock.v-entity{border-left-color:var(--ochre)} .clock.v-brand{border-left-color:var(--indigo)} .clock.v-contract{border-left-color:var(--burgundy)}
+  .clock b{display:block;font-size:14px} .clock small{color:var(--muted);font-size:13px}
+  .days{font-size:22px;font-weight:800;letter-spacing:-.02em;text-align:right;line-height:1} .days small{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:0}
+  .caught{color:var(--green)}
+  .inversion{background:var(--navy);color:#fff;border-radius:16px;padding:34px}
+  .inversion h3{font-size:20px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+  .inversion p{margin-top:12px;color:#c9d5e8;font-size:15px}
+
+  /* ---- DEMO PLAYER ---- */
+  .player{margin-top:36px;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(11,38,77,.08)}
+  .p-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 14px;border-bottom:1px solid var(--line);background:#fbfaf6}
+  .p-tabs{display:flex;gap:6px;flex-wrap:wrap}
+  .p-tabs button{font:inherit;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;display:inline-flex;align-items:center;gap:7px}
+  .p-tabs button i{width:8px;height:8px;border-radius:50%;background:var(--pale);display:inline-block}
+  .p-tabs button.on{border-color:var(--navy);color:var(--navy)}
+  .p-ctl{display:flex;align-items:center;gap:10px}
+  .p-sim{font-size:11.5px;font-weight:600;color:#fff;background:var(--slate);padding:3px 8px;border-radius:6px}
+  .p-pause{font:inherit;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+  .p-pause i{width:10px;height:10px;display:inline-block;border-left:3px solid var(--ink);border-right:3px solid var(--ink)}
+  .p-pause.paused i{border:0;width:0;height:0;border-left:9px solid var(--ink);border-top:5px solid transparent;border-bottom:5px solid transparent}
+  .p-body{display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-rows:minmax(0,1fr);height:600px}
+  .p-side{border-right:1px solid var(--line);padding:22px 22px 18px;display:flex;flex-direction:column;background:#fbfaf6}
+  .p-app{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+  .p-dot{width:34px;height:34px;border-radius:9px;background:var(--navy);flex:none}
+  .p-app b{display:block;font-size:14.5px}
+  .p-app small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+  .p-lab{font-size:12px;font-weight:600;color:var(--muted);margin-bottom:8px}
+  .p-narr{font-size:14px;line-height:1.55;color:var(--ink);min-height:140px}
+  .p-narr b{font-weight:700}
+  .p-narr .p-done{display:block;margin-top:12px;color:var(--green);font-weight:600;font-size:13px}
+  .p-ask{margin-top:auto;padding-top:18px}
+  .p-askchip{display:none;font-size:11.5px;font-weight:600;color:var(--muted);background:#eee9db;padding:3px 8px;border-radius:6px;margin-bottom:8px}
+  .p-askchip.show{display:inline-block}
+  .p-askline{border:1px solid var(--line);background:#fff;border-radius:10px;padding:11px 12px;font-size:13.5px;min-height:42px;display:flex;align-items:center;gap:2px;color:var(--ink)}
+  .p-askline.empty{color:var(--muted)}
+  .p-caret{width:1px;height:16px;background:var(--ink);display:inline-block;animation:p-blink 1s steps(1) infinite}
+  @keyframes p-blink{50%{opacity:0}}
+  .p-reply{font-size:13px;line-height:1.5;color:var(--muted);margin-top:10px;min-height:0}
+  .p-main{position:relative;display:flex;flex-direction:column;min-height:0}
+  .p-url{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);font-size:13px;color:var(--pale)}
+  .p-addr{flex:1;background:#f4f3ee;border-radius:8px;padding:6px 12px;color:var(--muted);font-size:12.5px}
+  .p-screen{display:grid;grid-template-columns:168px minmax(0,1fr);grid-template-rows:minmax(0,1fr);flex:1;min-height:0}
+  .p-nav{background:#fafaf8;border-right:1px solid var(--line);padding:12px 10px;display:flex;flex-direction:column;align-items:stretch;gap:2px;font-size:12.5px}
+  .p-nav-brand{display:flex;align-items:center;gap:8px;margin:0 2px 14px}
+  .p-nav-brand b{display:block;font-size:12.5px;line-height:1.1}
+  .p-nav-brand small{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+  .p-nav-logo{width:26px;height:26px;border-radius:7px;background:#111827;color:#fff;font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;flex:none}
+  .p-nav-lab{font-size:10.5px;color:var(--pale);margin:0 8px 6px;letter-spacing:.02em}
+  .p-nav a{padding:7px 8px;border-radius:6px;color:var(--ink);display:flex;align-items:center;gap:8px;white-space:nowrap}
+  .p-nav a svg{width:14px;height:14px;flex:none;color:var(--muted)}
+  .p-nav a em{font-style:normal;margin-left:auto;font-size:11px;color:var(--muted)}
+  .p-nav a.on{background:#ececea;font-weight:600}
+  .p-nav-foot{margin-top:auto;font-size:12px;color:var(--ink);border-top:1px solid var(--line);padding-top:10px}
+  .p-nav-foot span{display:flex;align-items:center;gap:8px;color:var(--muted);padding:5px 8px}
+  .p-nav-foot b{display:flex;align-items:center;gap:8px;padding:5px 8px;font-weight:600}
+  .p-nav-foot b u{text-decoration:none;width:22px;height:22px;border-radius:50%;background:#eee;font-size:9px;display:inline-flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+  .p-view{padding:0 22px 18px;font-size:13px;position:relative;overflow:auto;min-height:0}
+  .p-nav{min-height:0;overflow:hidden}
+  .p-top2{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);margin:0 -22px 16px;padding:10px 22px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff;z-index:2}
+  .p-top2 em{font-style:normal;margin:0 6px;color:var(--pale)}
+  .p-top2 .cust{margin-left:auto;color:var(--ink);font-weight:600;white-space:nowrap}
+  .p-top2 .cust i{font-style:normal;color:var(--muted);font-size:10px}
+  .p-top2 .av{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#3b82f6);flex:none}
+  .p-h{font-size:19px;font-weight:700;margin:0 0 3px}
+  .p-sub{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+  .p-stats{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:14px;background:#fff}
+  .p-stats .st{padding:11px 14px 12px;border-right:1px solid var(--line);border-top:3px solid transparent}
+  .p-stats .st:last-child{border-right:0}
+  .p-stats .st.on{border-top-color:#e5484d}
+  .p-stats small{display:block;font-size:10.5px;color:var(--muted);font-weight:600}
+  .p-stats b{display:block;font-size:24px;font-weight:700;margin:3px 0 1px;line-height:1.1}
+  .p-stats b.red{color:#e5484d}
+  .p-stats span{font-size:10.5px;color:var(--muted);line-height:1.35;display:block}
+  .p-filt{display:flex;gap:8px;align-items:flex-end;margin-bottom:18px;font-size:10.5px}
+  .p-filt label{display:flex;flex-direction:column;gap:4px;color:var(--muted);font-weight:600;min-width:0}
+  .p-filt label:first-child{flex:1;min-width:0}
+  .p-filt label span{border:1px solid var(--line);border-radius:7px;padding:6px 10px;font-weight:400;color:var(--ink);font-size:12px;background:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .p-filt button{font:inherit;font-size:12px;border:1px solid var(--line);background:#fff;border-radius:7px;padding:6px 12px;color:var(--ink)}
+  .p-pile{margin-bottom:14px}
+  .p-pile h4{font-size:13.5px;font-weight:700;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+  .p-pile h4 i.dot{width:8px;height:8px;border-radius:50%;display:inline-block;background:#c9c9c4}
+  .p-pile h4 i.dot.red{background:#e5484d}
+  .p-pile h4 span{font-weight:600;color:var(--muted);background:#f1f0ea;padding:1px 7px;border-radius:999px;font-size:11px}
+  .p-pile h4 span.red{background:#fde8e8;color:#e5484d}
+  .p-sub2{font-size:12.5px;font-weight:700;margin:10px 0 4px 12px;display:flex;gap:8px;align-items:center}
+  .p-sub2 i{font-style:normal;color:var(--muted);font-size:11px}
+  .p-sub2 span{font-weight:600;color:var(--muted);font-size:11.5px}
+  .p-note{font-size:11.5px;color:var(--muted);margin:2px 0 0 12px}
+  .p-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;align-items:center;padding:9px 10px;margin:0 0 0 12px;border-bottom:1px solid var(--line);border-radius:6px;background:#fff;transition:box-shadow .25s,background .25s}
+  .p-row .rt{min-width:0}
+  .p-row b{display:block;font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .p-row small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .p-row small u{text-decoration:underline;text-underline-offset:2px}
+  .p-row .d{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;white-space:nowrap;background:#f1f0ea;color:var(--muted)}
+  .p-row .d.warn{background:#fff3df;color:#b45309}
+  .p-row .d.soon{background:#e8f1fb;color:#1d4ed8}
+  .p-row .d.over{background:#fde8e8;color:#dc2626}
+  .p-take{font:inherit;font-size:11.5px;font-weight:600;border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 10px;color:var(--ink)}
+  .p-row.hl{box-shadow:0 0 0 2px var(--navy);background:#fbfaf6;border-bottom-color:transparent}
+  .player.slackmode .p-url{display:none}
+  .player.slackmode .p-nav{display:none}
+  .player.slackmode .p-screen{grid-template-columns:1fr}
+  .player.slackmode .p-view{padding:0;overflow:hidden}
+  .p-sl{display:grid;grid-template-columns:168px minmax(0,1fr);height:100%}
+  .p-sl-side{background:#3f0e40;color:#cfc3cf;padding:12px 8px;font-size:12.5px;overflow:hidden}
+  .p-sl-ws{color:#fff;font-weight:700;font-size:13.5px;margin:4px 8px 14px;display:flex;justify-content:space-between}
+  .p-sl-ws span{font-weight:400;font-size:10px}
+  .p-sl-lab{font-size:11px;color:#bcabbc;margin:12px 8px 4px}
+  .p-sl-side a{display:flex;align-items:center;gap:7px;padding:4px 8px;border-radius:5px;color:#cfc3cf}
+  .p-sl-side a.on{background:#1164a3;color:#fff}
+  .p-sl-side a i{width:8px;height:8px;border-radius:50%;background:#2bac76;display:inline-block}
+  .p-sl-side a i.u{background:transparent;border:1px solid #bcabbc}
+  .p-sl-main{display:flex;flex-direction:column;background:#fff;min-height:0}
+  .p-sl-head{padding:11px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:13.5px;display:flex;gap:10px;align-items:center}
+  .p-sl-head small{font-weight:400;color:var(--muted);font-size:11.5px}
+  .p-sl-msgs{padding:14px 16px 6px;overflow:auto;flex:1;min-height:0}
+  .p-msg{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;margin-bottom:16px}
+  .p-msg.late{display:none}
+  .p-msg.late.show{display:grid}
+  .p-msg .av{width:34px;height:34px;border-radius:7px;background:#fff;border:1px solid var(--line);color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .p-msg .av.u{background:#e4e1d8;color:var(--ink)}
+  .p-msg .av img{width:34px;height:34px;border-radius:7px;display:block}
+  .p-sl-side a img.ap{width:16px;height:16px;border-radius:4px}
+  .p-msg .sl-g{display:block;font-weight:700;margin-top:10px}
+  .p-msg .sl-l{display:block;line-height:1.5;margin-top:2px}
+  .p-msg .sl-l em{font-style:normal;color:var(--ink);margin-right:8px}
+  .p-msg .sl-l a{color:#1264a3;cursor:pointer}
+  .p-msg .sl-l a.hl{background:#e8f1fb;box-shadow:0 0 0 3px #e8f1fb}
+  .p-msg > div > .who{font-size:13px;font-weight:700;margin:0;padding:0;line-height:1.4;display:block}
+  .p-msg > div > .who em{display:inline}
+  .p-msg > div > .who span{display:inline}
+  .p-msg .who span{font-weight:400;color:var(--muted);font-size:11.5px;margin-left:6px}
+  .p-msg .who em{font-style:normal;font-size:10px;background:#eee;padding:1px 5px;border-radius:4px;margin-left:6px;color:var(--muted)}
+  .p-msg p{margin:3px 0 0;font-size:13px;line-height:1.5}
+  .p-msg .q{border-left:3px solid #ddd;padding:4px 10px;margin-top:8px;font-size:12px;color:var(--muted);line-height:1.5;font-style:italic}
+  .p-sl-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .p-sl-btn{font:inherit;font-size:12.5px;font-weight:600;border:1px solid #bbb;border-radius:5px;padding:5px 11px;background:#fff;color:var(--ink);transition:box-shadow .2s}
+  .p-sl-btn.hl{box-shadow:0 0 0 3px rgba(11,38,77,.25)}
+  .p-sl-in{margin:0 16px 14px;border:1px solid #ccc;border-radius:8px;padding:9px 12px;font-size:12.5px;color:var(--muted)}
+  .p-m{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:18px}
+  .p-why{background:#fbfaf6;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:12px;font-size:12.5px;line-height:1.5}
+  .p-why b{display:block;font-size:11.5px;color:var(--muted);margin-bottom:4px;font-weight:600}
+  .p-src{border-left:3px solid var(--ochre);padding:8px 12px;background:#fffdf7;font-size:12px;line-height:1.5;color:var(--ink);margin-bottom:12px;font-style:italic}
+  .p-src small{display:block;font-style:normal;color:var(--muted);margin-top:4px;font-size:11px}
+  .p-kv{font-size:12.5px;display:grid;grid-template-columns:auto 1fr;gap:5px 14px;margin-bottom:12px}
+  .p-kv span{color:var(--muted)}
+  .p-prop{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fff}
+  .p-prop b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:6px}
+  .p-prop p{margin:0 0 10px;font-size:12.5px;line-height:1.5}
+  .p-acts{display:flex;gap:8px}
+  .p-btn{font:inherit;font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);transition:box-shadow .2s}
+  .p-btn.pri{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .p-btn.hl{box-shadow:0 0 0 3px rgba(11,38,77,.25)}
+  .p-status{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--green);background:var(--green-soft);padding:4px 9px;border-radius:999px;margin-bottom:10px}
+  .p-cursor{position:absolute;left:60%;top:60%;transition:left .9s cubic-bezier(.4,0,.2,1),top .9s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:4;opacity:0;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
+  .p-cursor.show{opacity:1}
+  .p-cursor.click svg{transform:scale(.85)}
+  .p-toast{position:absolute;left:50%;bottom:16px;transform:translate(-50%,10px);background:#111;color:#fff;font-size:12.5px;padding:9px 12px;border-radius:9px;display:flex;gap:10px;align-items:center;opacity:0;transition:opacity .3s,transform .3s;white-space:nowrap;max-width:calc(100% - 40px);z-index:5}
+  .p-toast.show{opacity:1;transform:translate(-50%,0)}
+  .p-toast b{font-weight:600;background:#333;padding:2px 7px;border-radius:5px;font-size:11px}
+  @media(max-width:960px){.p-body{grid-template-columns:1fr;height:auto}.p-side{border-right:0;border-bottom:1px solid var(--line)}.p-screen{grid-template-columns:1fr}.p-nav{display:none}.p-m{grid-template-columns:1fr}.p-toast{white-space:normal}}
+  @media (prefers-reduced-motion: reduce){.p-cursor{transition:none}.p-caret{animation:none}}
+
+  /* ---- MONEY ---- */
+  .money{margin-top:48px;display:grid;grid-template-columns:1fr 1.15fr;gap:44px;align-items:start}
+  .money .why-p{color:var(--muted);font-size:16px;max-width:36em}
+  .money .why-p+.why-p{margin-top:12px}
+  .bill{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff}
+  .bill .row{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px;padding:18px 22px;border-top:1px solid var(--line);font-size:14px;align-items:center}
+  .bill .row:first-child{border-top:none;background:var(--cream);font-weight:700;font-size:12.5px;color:var(--muted)}
+  .bill .row b{display:block;font-size:14px} .bill .row small{color:var(--muted);font-size:12.5px}
+  .bill .firm{color:var(--red);font-weight:700}
+  .bill .ours{color:var(--green);font-weight:700}
+  .bill .foot{padding:12px 18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);background:var(--cream)}
+
+  /* ---- VAULTS ---- */
+  .vaults{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .vault.soon{background:#fff;color:var(--ink);border:1.5px dashed #c5cad3}
+  .vault.soon .area,.vault.soon p{color:var(--muted);opacity:1}
+  .vault.soon .tag{background:var(--slate-soft);color:var(--muted)}
+  .vault.soon a{color:var(--navy)}
+  .vault.v-work{background:var(--pale)}
+  .vault.v-review{background:#2f6f73}
+  .vault.v-corp{background:#6b2d5c}
+  .vault.v-disputes{background:#5f6b3a}
+  .vault{border-radius:16px;padding:30px;color:#fff;display:flex;flex-direction:column;min-height:300px}
+  .vault.v-contract{background:var(--burgundy)} .vault.v-inno{background:var(--slate)} .vault.v-privacy{background:var(--steel)} .vault.v-entity{background:var(--ochre);color:var(--ink)} .vault.v-brand{background:var(--indigo)}
+  .vault .name{font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .vault .area{font-size:13px;opacity:.85;margin-top:2px}
+  .vault p{margin-top:14px;font-size:14px;opacity:.92;flex:1}
+  .vault a{margin-top:16px;font-size:14px;font-weight:700;text-decoration:none;border-bottom:1.5px solid currentColor;align-self:flex-start;padding-bottom:1px}
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;background:rgba(255,255,255,.18);margin-left:8px;vertical-align:2px}
+  .vault.v-entity .tag{background:rgba(16,24,40,.12)}
+
+  /* ---- BUILD (provisioning) ---- */
+  .build{margin-top:48px;display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:start}
+  .field{display:flex;gap:8px;margin-top:18px;max-width:440px}
+  .field input{flex:1;padding:13px 14px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px}
+  .field button{padding:13px 18px;border-radius:10px;border:none;background:var(--navy);color:#fff;font-weight:700;font-family:inherit;cursor:pointer}
+  .stage{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 24px;min-height:300px;display:grid;gap:0;align-content:start;box-shadow:0 20px 60px rgba(11,38,77,.08)}
+  .stage .p-h{font-size:19px;font-weight:700;margin:0 0 3px}
+  .stage .p-sub{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+  .stage .row{background:#fff;border-bottom:1px solid var(--line);padding:11px 2px;font-size:13px;display:flex;justify-content:space-between;align-items:center;gap:14px;opacity:.55;transition:opacity .4s}
+  .stage .row:last-child{border-bottom:0}
+  .stage .row.on{opacity:1}
+  .stage .row b::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:8px;background:var(--pale);vertical-align:1px}
+  .stage .row.v-inno b::before{background:var(--slate)} .stage .row.v-entity b::before{background:var(--ochre)} .stage .row.v-brand b::before{background:var(--indigo)} .stage .row.v-privacy b::before{background:var(--steel)} .stage .row.v-contract b::before{background:var(--burgundy)}
+  .stage .row b{display:block;font-size:12.5px;font-weight:600} .stage .row small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+  .stage .row .st{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;background:#f1f0ea;color:var(--muted);white-space:nowrap} .stage .row.on .st{background:var(--green-soft);color:var(--green)}
+
+  /* ---- COLLEAGUE ---- */
+  .seats{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .seat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;border-top:4px solid var(--navy)}
+  .seat b{display:block;font-size:15.5px;margin-bottom:8px}
+  .seat p{font-size:14px;color:var(--muted)}
+  .seat .addr{display:inline-block;margin-top:10px;font-size:12.5px;padding:4px 10px;border-radius:99px;background:var(--navy-soft);color:var(--navy);font-weight:600}
+
+  /* ---- ESCALATION / TRUST / TEAM / FAQ / FORM ---- */
+  .scope{margin-top:36px;border:1px solid var(--line);border-radius:14px;padding:24px 28px;background:#fff;max-width:52em;font-size:14.5px;color:var(--muted)}
+  .scope strong{color:var(--ink)}
+  .never{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .never div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px 24px}
+  .never b{display:block;font-size:14.5px;margin-bottom:5px} .never p{font-size:13.5px;color:var(--muted)}
+  .people{margin-top:44px;display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:980px}
+  .person{background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px}
+  .p-name{font-size:18px;font-weight:800;letter-spacing:-.01em} .p-role{font-size:13px;color:var(--navy);font-weight:700;margin:2px 0 10px}
+  .person p{font-size:14.5px;color:var(--muted)}
+  .faq{margin-top:40px;max-width:56em}
+  details{border-bottom:1px solid var(--line);padding:22px 4px}
+  summary{font-weight:700;font-size:16px;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+  summary::-webkit-details-marker{display:none} summary::after{content:"+";color:var(--muted)} details[open] summary::after{content:"–"}
+  details p{margin-top:10px;font-size:14.5px;color:var(--muted);max-width:48em}
+  .closing{text-align:center} .closing h2{margin:0 auto} .closing .lede2{margin-left:auto;margin-right:auto}
+  .form{margin:36px auto 0;max-width:460px;text-align:left}
+  .form label{display:block;font-size:13px;font-weight:600;margin:14px 0 5px}
+  .form input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:15px}
+  .form button{width:100%;margin-top:20px;font-weight:700;font-size:16px;background:var(--navy);color:#fff;padding:15px;border-radius:10px;border:none;cursor:pointer}
+  .note{margin-top:12px;font-size:12.5px;color:var(--muted);text-align:center}
+  footer{border-top:1px solid var(--line);padding:32px 5vw;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media (prefers-reduced-motion: reduce){.matter,.stage .row{opacity:1;transform:none;transition:none}.live i{animation:none}}
+  @media(max-width:1500px) and (min-width:961px){
+    .desk{padding:24px 22px 20px}
+    .matter{padding:16px 18px;margin-top:14px}
+    .m-title{font-size:13.5px} .m-time{font-size:11.5px} .m-body{font-size:13px;margin-top:6px}
+    .ev{font-size:11px;padding:3px 8px} .m-evidence{gap:6px;margin-top:10px}
+    .btn{font-size:12.5px;padding:7px 12px} .m-actions{margin-top:12px}
+    .desk-head h2{font-size:14px} .desk-head .count{font-size:12.5px}
+  }
+  @media(max-height:820px) and (min-width:961px){
+    h1{font-size:clamp(34px,3.3vw,48px)}
+  }
+  @media(max-width:960px){
+    :root{--spine:14px}
+    .spine a span{display:none}
+    .fold,.radar,.build,.why .inner,.money{grid-template-columns:1fr;gap:28px}
+    .desk-wrap{min-height:0}
+    .desk{position:static;max-height:70vh}
+    .fold{min-height:0;grid-template-rows:auto auto auto}
+    .fold > .copy{display:block}
+    .week{grid-template-columns:1fr;gap:8px;border-bottom:none;padding-bottom:0}
+    .bill .row{grid-template-columns:1fr;gap:4px}
+    .board,.never,.seats,.benefits{grid-template-columns:1fr}
+    .who{grid-template-columns:1fr}
+    .vaults{grid-template-columns:1fr 1fr}
+    .people{grid-template-columns:1fr}
+    nav a:not(.cta){display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="spine" aria-label="Page sections">
+  <a class="s-aila on" href="#top"><span>AiLA</span></a>
+  <a class="s-contract" href="#contracts"><span>ContractVault</span></a>
+  <a class="s-privacy" href="#privacy"><span>PrivacyVault</span></a>
+  <a class="s-entity" href="#entity"><span>EntityVault</span></a>
+  <a class="s-brand" href="#brand"><span>BrandVault</span></a>
+  <a class="s-inno" href="#inno"><span>InnoVault</span></a>
+  <a class="s-work soon" href="#work"><span>Employment</span></a>
+</div>
+
+<header id="top">
+  <a class="logo" href="#top" aria-label="AiLA home">
+    <svg width="66" height="34" viewBox="0 0 75 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="0" y="30" font-family="Inter, sans-serif" font-weight="800" font-size="28" fill="#ffffff" letter-spacing="0.5">AiLA</text>
+      <line x1="18" y1="36" x2="72" y2="36" stroke="#ffffff" stroke-width="1.8" stroke-linecap="square"/>
+      <line x1="74" y1="36" x2="74" y2="28" stroke="#ffffff" stroke-width="1.8" stroke-linecap="square"/>
+    </svg>
+  </a>
+  <nav aria-label="Main">
+    <div class="dd"><a href="#gc" aria-haspopup="true">Who it's for</a>
+      <div class="menu">
+        <a href="#queue">Sole general counsel</a>
+        <a href="#why">Legal team at capacity</a>
+        <a href="#build">Startup past £1m ARR</a>
+      </div>
+    </div>
+    <a href="#solutions">Solutions</a>
+    <a href="#money">Pricing</a>
+    <a href="#trust">Trust</a>
+    <a href="#team">About us</a>
+    <a href="#access" class="cta" data-modal>Request access</a>
+  </nav>
+</header>
+
+<section class="fold" id="gc">
+  <div class="copy">
+    <h1>The external AI legal department, with you in control.</h1>
+    <p class="lede">AiLA does the routine legal work, across contracts, employment, privacy, trade marks and patents, from inside your Slack, Teams and email. Our own lawyers take the escalations and your head of legal keeps the major decisions. The work is completed faster, and at a fraction of what law firms charge.</p>
+    <div class="ctas"><a class="btn-primary" href="#access" data-modal>Request access</a><a class="btn-link" href="#demo">See how it works</a></div>
+  </div>
+  <div class="desk-wrap"><div class="hero-slack" aria-label="Illustrative Slack channel">
+    <div class="hs-head"><span class="hs-ch"># aila-updates</span><span class="hs-ws">Thorncroft Travel · Slack</span></div>
+    <div class="hs-body">
+      <div class="p-msg"><div class="av"><img data-aila-icon alt=""></div><div><div class="who">Aila <em>APP</em><span>08:02</span></div><p><b>13 matters, 2 need you today</b><span class="sl-g">Waiting for your sign-off</span><span class="sl-l"><em>19 Nov</em><a>Destination management agreement, Grenvale Destinations, last day to send non-renewal notice</a>, hard deadline</span><span class="sl-g">Nobody holds these</span><span class="sl-l"><em>25 Nov</em><a>Thorncroft Sun opposition (UKXX0000003)</a>, hard deadline</span></p></div></div>
+      <div class="p-msg"><div class="av u">LA</div><div><div class="who">L. Ahmed<span>08:12</span></div><p>Is 90 days calendar or working days?</p></div></div>
+      <div class="p-msg"><div class="av"><img data-aila-icon alt=""></div><div><div class="who">Aila <em>APP</em><span>08:12</span></div><p>Calendar days, under clause 1.1, so the last safe date is Thursday 19 November. The notice is drafted from clause 14.2 and waits for your approval.</p><div class="p-sl-btns"><button type="button" class="p-sl-btn pri">Approve in ContractVault</button><button type="button" class="p-sl-btn">Discuss</button></div></div></div>
+    </div>
+  </div></div>
+</section>
+
+<section id="demo" class="cream" style="padding-top:8vh">
+  <div class="inner">
+    <h2>How Aila works</h2>
+    <p class="lede2">Think of Aila as an extension of your in-house legal team, adding paralegal and lawyer capacity without the headcount. Aila joins the company as a new hire would, and works through Slack, Teams and email, not another legal tech to be learned and driven.</p>
+    <div class="player" id="player" aria-label="AiLA demo, simulated">
+      <div class="p-top">
+        <div class="p-tabs" role="tablist"></div>
+        <div class="p-ctl"><button class="p-pause" type="button" aria-label="Pause demo"><i></i>Pause demo</button><span class="p-sim">Simulated</span></div>
+      </div>
+      <div class="p-body">
+        <aside class="p-side">
+          <div class="p-app"><span class="p-dot"></span><div><b class="p-appname"></b><small class="p-apparea"></small></div></div>
+          <div class="p-lab">What's happening</div>
+          <div class="p-narr"></div>
+          <div class="p-ask"><span class="p-askchip"></span><div class="p-askline"><span class="p-asktext"></span><span class="p-caret"></span></div><div class="p-reply"></div></div>
+        </aside>
+        <div class="p-main">
+          <div class="p-url"><span>‹</span><span>›</span><span>↻</span><div class="p-addr">app.trustaila.com/thorncroft/dashboard</div></div>
+          <div class="p-screen">
+            <nav class="p-nav"><div class="p-nav-brand"><span class="p-nav-logo">Ai</span><div><b>AiLA</b><small>AiLA dashboard</small></div></div><div class="p-nav-lab">Home</div><a class="on" data-nav="home"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>Dashboard<em>13</em></a><a data-nav="matters"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 2h5l3 3v9H4z"/><path d="M9 2v3h3"/></svg>Matters</a><a data-nav="reports"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 2h5l3 3v9H4z"/><path d="M6 8h4M6 11h4"/></svg>Reports</a><a data-nav="activity"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 9l2-6h8l2 6v4H2z"/><path d="M2 9h4l1 2h2l1-2h4"/></svg>Activity</a><a data-nav="report"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 13V8M8 13V3M13 13V6"/></svg>Work report</a><div class="p-nav-foot"><span>? Help</span><b><u>LA</u>L. Ahmed</b></div></nav>
+            <div class="p-view"></div>
+          </div>
+          <div class="p-cursor" aria-hidden="true"><svg width="18" height="22" viewBox="0 0 18 22"><path d="M1 1l6 18 3-7 7-3z" fill="#111" stroke="#fff" stroke-width="1.5"/></svg></div>
+          <div class="p-toast" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+    <div class="points">
+      <div><h3>Scalable</h3><p>AI does the volume, so the service grows with the business and takes a surge without a hire.</p></div>
+      <div><h3>Holds your context</h3><p>Your precedents, policies and contracts are held and applied to every matter, which no outside provider had before.</p></div>
+      <div><h3>On retainer</h3><p>No seats and no hourly rate on routine work. Contentious matters are quoted by the hour, by our own lawyers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="who" class="whofor">
+  <div class="who-grid who-single">
+    <div>
+      <div class="who-lab">Who it's for</div>
+      <div class="doors doors-who">
+      <a class="door" href="#queue"><strong>Sole general counsel</strong><span>Delegate the routine to AiLA and keep the decisions.</span></a>
+      <a class="door" href="#why"><strong>Legal teams at capacity</strong><span>The routine, and the surge, without a hiring process.</span></a>
+      <a class="door" href="#build"><strong>Startups past £1m ARR</strong><span>A legal department that arrives already built.</span></a>
+    </div>
+    </div>
+    <div>
+          </div>
+  </div>
+</section>
+<div class="band" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="voices" aria-label="What in-house lawyers tell us">
+  <div class="track">
+    <span>It's been with legal for three weeks.</span><span>I do the renewals on Sunday nights.</span><span>We found out about the auto-renewal when the invoice arrived.</span><span>Sales think I'm the reason the deal slipped.</span><span>The DSAR landed at six on a Friday.</span><span>I'm the whole department, and I'm on holiday next week.</span><span>External counsel charged us to read our own contract.</span><i>Composite lines from discovery conversations</i>
+    <span>It's been with legal for three weeks.</span><span>I do the renewals on Sunday nights.</span><span>We found out about the auto-renewal when the invoice arrived.</span><span>Sales think I'm the reason the deal slipped.</span><span>The DSAR landed at six on a Friday.</span><span>I'm the whole department, and I'm on holiday next week.</span><span>External counsel charged us to read our own contract.</span><i>Composite lines from discovery conversations</i>
+  </div>
+</div>
+<section class="cream" id="queue" style="border-top:none">
+  <div class="inner">
+    <ul class="week week-s2" aria-label="Needing attention"><li class="lab">Needing attention</li>
+      <li data-i="0"><span class="box"></span><span class="txt">A notice window closing on the Grenvale agreement</span></li>
+      <li data-i="1"><span class="box"></span><span class="txt">A subject access request on day 17 of 30</span></li>
+      <li data-i="2"><span class="box"></span><span class="txt">Accounts due at Companies House in twelve days</span></li>
+      <li data-i="3" class="weekend"><span class="box"></span><span class="txt">Weekend with the family, <s>gone</s></span></li>
+  </ul>
+    <h2><span class="strike">"It's with legal."</span> No longer.</h2>
+    <p class="lede2">"It's with legal" is the phrase that casts a bad spell on deals, launches and hires, and blames lawyers who are already working nights and weekends.</p>
+    <p class="lede2">AiLA takes the queue of dates away. The moment an obligation appears, in a signed contract, on the register or at a registry, AiLA counts its clock and watches it. When it needs a decision it reaches you prepared, with the reason and the source.</p>
+    <p class="lede2">And when a diligence request, a restructuring and a launch land in the same month, the department scales to meet the peak. No need to hire for it, and nothing waits.</p>
+    <div class="board dash" aria-label="Illustrative dashboard">
+      <div class="p-h">Dashboard</div><div class="p-sub">Thorncroft Travel Group (demo, fictional), 64 live matters</div>
+      <div class="p-stats"><div class="st on"><small>Awaiting your attention</small><b class="red">13</b><span>yours to act on, or close with nobody on it</span></div><div class="st"><small>In hand</small><b>0</b><span>nothing is in hand</span></div><div class="st"><small>For information</small><b>64</b><span>done, or not yet close</span></div></div>
+      <div class="dash-cols">
+        <div class="p-pile"><h4><i class="dot red"></i>Awaiting your attention <span class="red">13</span></h4>
+          <div class="p-sub2"><i>⌄</i>Waiting for your sign-off <span>5</span></div>
+          <div class="p-row"><div class="rt"><b>Destination management agreement, Grenvale Destinations, last day to send non-renewal notice</b><small><u>Open in ContractVault</u> · Moderate stakes</small></div><span class="d warn">3d · due 19 Nov 2026</span><button class="p-take" type="button">Take up</button></div>
+          <div class="p-row"><div class="rt"><b>Hotel allocation agreement, Harrowgate Hotels, contract ends 18 Nov 2026</b><small><u>Open in ContractVault</u> · Moderate stakes</small></div><span class="d warn">2d · due 18 Nov 2026</span><button class="p-take" type="button">Take up</button></div>
+          <div class="p-row"><div class="rt"><b>Insurance broker retainer, Stannard Holt, contract ends 3 Dec 2026</b><small><u>Open in ContractVault</u> · Moderate stakes</small></div><span class="d soon">17d · due 3 Dec 2026</span><button class="p-take" type="button">Take up</button></div>
+        </div>
+        <div class="p-pile"><h4>&nbsp;</h4>
+          <div class="p-sub2"><i>⌄</i>Nobody holds these <span>8</span></div>
+          <div class="p-row"><div class="rt"><b>Thorncroft Sun opposition (UKXX0000003)</b><small><u>Open in BrandVault</u> · High stakes</small></div><span class="d soon">9d · due 25 Nov 2026</span><button class="p-take" type="button">Take up</button></div>
+          <div class="p-row"><div class="rt"><b>Rachel Underwood, package booking data</b><small><u>Open in PrivacyVault</u> · Moderate stakes</small></div><span class="d soon">13d · due 29 Nov 2026</span><button class="p-take" type="button">Take up</button></div>
+          <div class="p-row"><div class="rt"><b>Thorncroft Retail Ltd, accounts due 28 Nov 2026</b><small><u>Open in EntityVault</u> · Moderate stakes</small></div><span class="d soon">12d · due 28 Nov 2026</span><button class="p-take" type="button">Take up</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="who">
+      <div><b>For the board</b>The round completes on the day it was meant to.</div>
+      <div><b>For the CFO</b>The legal report arrives written, with every number traceable.</div>
+    </div>
+    <div class="cta-line"><a class="btn-primary" href="#access" data-modal>See your dates on one desk</a><p>Tell us your company name and we load your companies, marks and patents before we talk.</p></div>
+  </div>
+</section>
+
+<section id="solutions">
+  <div class="inner">
+    <h2>One department, nine solutions</h2>
+    <p class="lede2">All built on the same foundation, with official records underneath, fixed rules for anything with a date or a number in it, hard limits on what the AI may do without you, and the same lawyers behind every one. Start with one, and the department grows from there.</p>
+    <div class="vaults">
+      <div class="vault v-contract" id="contracts"><div class="name">Contracts</div><div class="area">ContractVault</div><p>ContractVault reads your signed contracts and keeps what they oblige. It extracts expiry, notice periods, renewals and the obligations in between, each with the passage it came from, for a lawyer to confirm. It counts the deadlines in working days where the contract says so, and when a date calls for action it drafts the notice and proposes it. Nothing is sent without approval.</p><a href="#access">See it on your contracts</a></div>
+      <div class="vault v-privacy" id="privacy"><div class="name">Privacy</div><div class="area">PrivacyVault · privacy and data</div><p>PrivacyVault shows every subject access request with the date it arrived, its statutory deadline and the stage it has reached, counted on the UK calendar. Give AiLA access to the data at setup and it drafts the response for a lawyer to approve. A request close to its deadline becomes a matter. PrivacyVault can run as your own instance in your own cloud.</p><a href="https://dsar-readiness.vercel.app/">Assess your readiness</a></div>
+      <div class="vault v-entity" id="entity"><div class="name">Entities</div><div class="area">EntityVault · entity management</div><p>EntityVault keeps the group's companies and what Companies House expects of them. It takes each company's accounts and confirmation statement dates from the register itself, refreshed every morning, never worked out from a year end. A filing that changes an officer or a person with control appears as a notice, and a date that is close becomes a matter.</p><a href="#access">See it on your group</a></div>
+      <div class="vault v-brand" id="brand"><div class="name">Brands</div><div class="area">BrandVault · trade marks</div><p>BrandVault holds your portfolio and keeps its dates. Every mark carries its registry, classes, status and the renewal and opposition dates the registry's rules give it, and a date that disagrees with the register is flagged, not guessed at. Watching searches the UK register every day for new filings near a mark. A renewal, a filing against a mark or a notice from the registry becomes a matter.</p><a href="https://www.getbrandvault.com">Show me my portfolio</a></div>
+      <div class="vault v-inno" id="inno"><div class="name">Innovation</div><div class="area">InnoVault · patents</div><p>InnoVault keeps your patents and their dates. Each family holds every right in it, the European patent, each validation, the Unitary Patent, the US patent and the PCT application, with status read from the EPO every week. It works out renewal and maintenance fees from each office's rules, and every date names its rule and the last day it can still be paid late. Aila proposes renewing or lapsing and a lawyer decides. InnoVault never pays a fee.</p><a href="#access">See it on your patents</a></div>
+      <div class="vault v-work" id="work"><div class="name">Employment <span class="tag">Coming soon</span></div><div class="area">Employment law and HR process</div><p>Contracts, handbooks and policies kept current, and the letters, meetings and consultations that HR issues must follow, prepared and tracked on the same model. Name to follow.</p><a href="#access">Tell us if this is where it hurts</a></div>
+      <div class="vault v-review" id="review"><div class="name">Contract review <span class="tag">Coming soon</span></div><div class="area">Their paper against your positions</div><p>Aila reads the agreement the other side sends and checks each clause against the positions you have set, which terms you accept, which you never do and what you fall back to. Each departure is flagged with the clause it came from and the redline drafted, for a lawyer to approve before it goes back. The negotiation stays with you. Name to follow.</p><a href="#access">Tell us if this is where it hurts</a></div>
+      <div class="vault v-corp" id="corporate"><div class="name">Corporate <span class="tag">Coming soon</span></div><div class="area">Board, shareholders and the cap table</div><p>Resolutions, minutes and board packs prepared from the register and the articles, share schemes and the cap table kept current, and the filing each change requires drafted for sign-off. Every date taken from Companies House, never worked out from memory. Name to follow.</p><a href="#access">Tell us if this is where it hurts</a></div>
+      <div class="vault v-disputes" id="disputes"><div class="name">Disputes <span class="tag">Coming soon</span></div><div class="area">Before anything reaches court</div><p>Debt recovery run to the pre-action protocol, with each letter sent on its date and the claim prepared if payment does not come. Letters before claim and the first reply to the other side drafted from your precedents for a lawyer to approve. Where a matter turns contentious, Aila’s own lawyers take it on. Name to follow.</p><a href="#access">Tell us if this is where it hurts</a></div>
+    </div>
+    <p class="quiet" style="margin-top:22px">Regulatory correspondence, licences and returns, property and leases, and supplier onboarding follow, each on the same model. Tell us which you need first.</p>
+  </div>
+</section>
+
+<section class="why cream" id="why">
+  <div class="inner">
+    <div>
+      <h2>Legal is leaving the building, the way payroll, IT and facilities did.</h2>
+      <p class="lede2" style="margin-top:14px;font-size:15.5px">The routine layer, with your lawyer still in charge.</p>
+    </div>
+    <div>
+      <p>Routine legal work has stayed inside the company - until now - because the cost of the alternative was higher. An outside lawyer starts from zero on your context, bills you for briefing them, and you can't see how the work was done. So companies hire a general counsel and give them everything.</p>
+      <p>An AI system built for the job, what engineers call a harness, removes both costs. It holds your policies, history and positions, so nothing starts from zero. It logs every check, draft and sign-off, so external work becomes more visible and auditable than an employee's. Once context and control can sit outside the firm, the routine layer of the legal function can follow the other functions out of the building. AI does not just make things faster. It changes where work is best done and by whom.</p>
+      <div class="paper">The argument in full is in <a href="https://ssrn.com/abstract=7270500">Reconsidering Coase in the Age of AI</a>, a working paper by Mark Kingsley-Williams (founder and CEO of AiLA), Lucy Tallon and Mijo Juric Williams.<small><a href="https://marginalrevolution.com/marginalrevolution/2026/08/saturday-assorted-links-575.html">Linked by economist Tyler Cowen on Marginal Revolution</a>, August 2026.</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="build">
+  <div class="inner">
+    <h2>Type your company name and your department is built in seconds</h2>
+    <div class="build">
+      <div>
+        <p class="lede2">If your company has no lawyer yet, AiLA arrives with your companies, marks, patents and signed contracts loaded in week one, their dates read from the registers and the documents, unlike a first hire who would spend months assembling the list. If your company has a GC, it starts from what is already public and your contracts follow as you connect the folder.</p>
+        <div class="field"><input type="text" placeholder="Your company name" aria-label="Company name" id="co"><button type="button" id="go">Build it</button></div>
+        <p class="quiet">Illustrative. On the real thing, this pulls your companies from Companies House, your marks from the registries and your patents from the EPO.</p>
+      </div>
+      <div class="stage" aria-label="Illustrative provisioning">
+        <div class="p-h">Setup</div><div class="p-sub">In place before anyone has logged in</div>
+        <div class="row v-entity"><div><b>Entity found</b><small>Companies House record, officers, accounts and confirmation statement dates</small></div><span class="st">Waiting</span></div>
+        <div class="row v-brand"><div><b>Marks matched</b><small>Registrations across UKIPO, EUIPO, USPTO and WIPO, with their dates</small></div><span class="st">Waiting</span></div>
+        <div class="row v-inno"><div><b>Patents found</b><small>Every family at the EPO under your applicant names</small></div><span class="st">Waiting</span></div>
+        <div class="row v-privacy"><div><b>DSAR clocks running</b><small>Arrival date, statutory deadline and stage for each request</small></div><span class="st">Waiting</span></div>
+        <div class="row"><div><b>A seat in Slack or Teams</b><small>Ask what is due, hear what changed at eight each morning</small></div><span class="st">Waiting</span></div>
+        <div class="row"><div><b>Your dashboard</b><small>Awaiting your attention, in hand, for information</small></div><span class="st">Waiting</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="colleague">
+  <div class="inner">
+    <h2>It joins the company like a new colleague</h2>
+    <p class="lede2">AiLA joins the company with a seat in Slack or Teams. Ask what is due in any Vault and Aila, its assistant, answers from the record with a link. Each morning at eight it says what has changed, and on Mondays it sends the week. Decisions are taken in AiLA, one click from the message, where every matter says why it sits where it does. Each morning Aila tells you what needs you, the dashboard is where you decide, and the record behind each matter is a click away. How access is governed is set out under <a href="#trust">Trust</a>.</p>
+    <div class="seats">
+      <div class="seat"><b>Its own inbox, your drive and calendar</b><p>Coming next. Registry letters and the counterparty's paper will reach AiLA's own address and be matched to the right matter, the work will be filed where your documents live, and the calendar will carry the dates it is counting.</p><span class="addr">Coming</span></div>
+      <div class="seat"><b>A seat in Slack or Teams</b><p>Ask what is due in any Vault and Aila answers from the record with a link. Each morning at eight it says what has changed, and on Mondays it sends the week. It proposes and changes nothing without a person's say-so.</p><span class="addr">#legal</span></div>
+      <div class="seat"><b>Your signed contracts, your folder</b><p>Connect a folder and ContractVault reads the executed contracts in it. It extracts expiry, notice periods, renewals and the obligations in between, each with the passage it came from, for a lawyer to confirm.</p><span class="addr">Connected folder</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="compare">
+  <div class="inner">
+<div class="cmp-block" id="compare-block">
+<style>
+  .cmp-block .cmp-head{max-width:38em}
+  .cmp-block .cmp-wrap{margin-top:36px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cmp-block table.cmp{width:100%;border-collapse:separate;border-spacing:0;font-size:14.5px;line-height:1.45;min-width:760px}
+  .cmp-block .cmp th,.cmp-block .cmp td{padding:14px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  .cmp-block .cmp thead th{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--muted);padding-bottom:12px;border-bottom:2px solid var(--line);vertical-align:bottom}
+  .cmp-block .cmp thead th.us{color:#fff;background:var(--navy);border-radius:10px 10px 0 0;border-bottom-color:var(--navy);font-weight:700}
+  .cmp-block .cmp tbody th{font-weight:600;color:var(--ink);width:27%}
+  .cmp-block .cmp tbody td{width:24.3%;color:var(--muted);position:relative;padding-left:48px}
+  .cmp-block .cmp td.us{background:var(--navy-soft);color:var(--ink)}
+  .cmp-block .cmp tbody tr:last-child td.us{border-radius:0 0 10px 10px}
+  .cmp-block .cmp tbody tr:last-child th,.cmp-block .cmp tbody tr:last-child td{border-bottom:none}
+  .cmp-block .cmp td b{position:absolute;left:18px;top:15px;display:block;width:20px;height:20px;line-height:20px;border-radius:50%;text-align:center;font-size:12px;font-weight:800;background:var(--green-soft);color:var(--green)}
+  .cmp-block .cmp td b.no{background:#f6e4e4;color:var(--red)}
+  .cmp-block .cmp td.us b{background:var(--green);color:#fff}
+  .cmp-block .cmp td.us b.no{background:var(--red);color:#fff}
+  @media (max-width:760px){.cmp-block table.cmp{font-size:13.5px} .cmp-block .cmp th,.cmp-block .cmp td{padding:12px 12px} .cmp-block .cmp tbody td{padding-left:40px} .cmp-block .cmp td b{left:12px;top:13px}}
+</style>
+  <div class="cmp-head">
+    <h2>How AiLA compares</h2>
+    <p class="lede2">AiLA is neither a tool that helps you do the work yourself nor a firm that charges you by the hour for it.</p>
+  </div>
+  <div class="cmp-wrap">
+    <table class="cmp" aria-label="AiLA compared with legal AI tools and instructing a law firm">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col" class="us">AiLA</th>
+          <th scope="col">Legal AI tools</th>
+          <th scope="col">In-house lawyer instructing a law firm</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Routine work done for you, not by you</th>
+          <td class="us"><b>✓</b>AiLA counts, drafts the notice and proposes, your lawyer decides</td>
+          <td><b class="no">✗</b>You do it, with help</td>
+          <td><b>✓</b>The firm's people, by the hour</td>
+        </tr>
+        <tr>
+          <th scope="row">Deadlines counted the day they appear</th>
+          <td class="us"><b>✓</b>Starts the moment it arrives</td>
+          <td><b class="no">✗</b>As fast as you have time for</td>
+          <td><b class="no">✗</b>Days, once instructed</td>
+        </tr>
+        <tr>
+          <th scope="row">Keeps moving when your lawyer is unavailable</th>
+          <td class="us"><b>✓</b>Runs when they're away, scales to the peak</td>
+          <td><b class="no">✗</b>Stops after every task</td>
+          <td><b class="no">✗</b>Still needs instructing, then waits in the firm's queue</td>
+        </tr>
+        <tr>
+          <th scope="row">Holds the record, every mark, company, contract and patent with its dates</th>
+          <td class="us"><b>✓</b>One register, read from the source</td>
+          <td><b class="no">✗</b>Only what you upload</td>
+          <td><b class="no">✗</b>Briefed from zero each matter</td>
+        </tr>
+        <tr>
+          <th scope="row">Watches deadlines and obligations unprompted</th>
+          <td class="us"><b>✓</b>Every clock, contract term and renewal</td>
+          <td><b class="no">✗</b>Only what you ask about</td>
+          <td><b class="no">✗</b>Only the matters they hold</td>
+        </tr>
+        <tr>
+          <th scope="row">Works in Slack</th>
+          <td class="us"><b>✓</b>Asks and answers where you already are</td>
+          <td><b class="no">✗</b>A tool to log into</td>
+          <td><b>✓</b>Email and phone</td>
+        </tr>
+        <tr>
+          <th scope="row">Lawyers on hand when it turns contentious</th>
+          <td class="us"><b>✓</b>AiLA's own, who already know the file</td>
+          <td><b class="no">✗</b>Software stops at the dispute</td>
+          <td><b>✓</b>The firm's, on a new instruction</td>
+        </tr>
+        <tr>
+          <th scope="row">No hourly rate on routine work, no per-seat fees</th>
+          <td class="us"><b>✓</b>A retainer for the routine, contentious matters quoted by the hour</td>
+          <td><b class="no">✗</b>A fee per user, and you still do the work</td>
+          <td><b class="no">✗</b>By the hour, plus reading in</td>
+        </tr>
+        <tr>
+          <th scope="row">Runs your court litigation</th>
+          <td class="us"><b class="no">✗</b>AiLA prepares the file, your litigators run it</td>
+          <td><b class="no">✗</b>Not a service</td>
+          <td><b>✓</b>The firm's litigators</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="dark" id="watch">
+  <div class="inner">
+    <h2>Our retainer prevents problems</h2>
+    <p class="lede2">Most legal loss in the mid-market comes from missed deadlines, renewals that lapse, notice windows that close, a deadline nobody was watching. A law firm earns when there is a problem to fix. AiLA earns by watching, so problems are pre-empted before they occur.</p>
+    <div class="radar">
+      <div class="clocks" aria-label="Illustrative obligations being watched">
+        <div class="clock v-contract"><div><b>Non-renewal notice, Grenvale Destinations</b><small class="caught">Notice window caught and the decision prepared, renegotiate or exit</small></div><div class="days">3<small>days to notice</small></div></div>
+        <div class="clock v-brand"><div><b>Opposition, THORNCROFT SUN (UK)</b><small>Filing near the mark found by Watching, deadline from the register</small></div><div class="days">9<small>days to oppose</small></div></div>
+        <div class="clock v-entity"><div><b>Accounts, Thorncroft Retail Ltd</b><small>Date read from Companies House this morning</small></div><div class="days">12<small>days left</small></div></div>
+        <div class="clock v-privacy"><div><b>Subject access request, Rachel Underwood</b><small>Day 17 of 30 on the UK calendar, response in draft</small></div><div class="days">13<small>days left</small></div></div>
+        <div class="clock v-inno"><div><b>EP 3 456 789, German validation</b><small class="caught">Renewal proposed, rule 2026-10-29.1 named</small></div><div class="days">26<small>days left</small></div></div>
+      </div>
+      <div class="inversion">
+        <h3>What's the incentive?</h3>
+        <p>A law firm is paid by the matter, so every problem that arises is income. On a retainer we're incentivised to prevent.</p>
+        <p>The queue goes first, and then the problems stop arising.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="money">
+  <div class="inner">
+    <h2>Why AiLA is faster and cheaper</h2>
+    <div class="money">
+      <div>
+        <p class="why-p">A law firm's hourly rate has to pay for its pyramid structure, so junior hours are billed at a mark-up, and partner profit is priced into every minute of every matter. That is the business model, and it is why the routine work, the work you send most often, is the worst value, the most money for the least judgement.</p>
+        <p class="why-p">AiLA is different. AI does most of the labour, so the price of a counted deadline or a drafted notice is low. Our lawyers get involved only when a matter escalates, and then on a quoted fee. You pay a retainer against the work, as with an accountant, so every further contract costs nothing extra within your retainer. And the matters that never arrive, because they were caught, cost nothing at all.</p>
+      </div>
+      <div class="bill" aria-label="Illustrative comparison at typical mid-market rates">
+        <div class="row"><span>The work</span><span>A firm, at £400+ an hour</span><span>With AiLA</span></div>
+        <div class="row"><div><b>Subject access request</b><small>30-day clock counted, response drafted for sign-off</small></div><span class="firm">£5,000 and up</span><span class="ours">Within your retainer</span></div>
+        <div class="row"><div><b>Filing dates, twelve companies</b><small>Read from the register each morning and watched</small></div><span class="firm">£2,400 a year</span><span class="ours">Within your retainer</span></div>
+        <div class="row"><div><b>Renewal proposal, one patent family</b><small>The rule, the fee and the last day to pay late</small></div><span class="firm">£350 plus fees</span><span class="ours">Within your retainer</span></div>
+        <div class="row"><div><b>The auto-renewal nobody caught</b><small>Three years on old pricing</small></div><span class="firm">£117,000</span><span class="ours">£0. Notice served.</span></div>
+        <div class="foot">Illustrative, at typical mid-market rates. Retainers are quoted against your actual portfolio, contracts and volumes. Escalated matters are quoted before work begins.</div>
+      </div>
+    </div>
+    <div class="cta-line"><a class="btn-primary" href="#access" data-modal>Get a quote against your portfolio</a><p>A retainer priced on your actual contracts, entities, marks and patents, not a licence.</p></div>
+  </div>
+</section>
+
+<section id="escalation">
+  <div class="inner">
+    <h2>Get on the front foot with any disputes; our own lawyers already know the file.</h2>
+    <p class="lede2">When a matter exceeds the routine — an opposition, a contested access request, a difficult regulator — AiLA's own lawyers take it on, working AI-assisted, with the full history already in the system. Escalation starts with the context in place, not with a briefing call and a discovery invoice.</p>
+    <div class="scope"><strong>What escalation covers.</strong> Contentious matters before the registries and regulators, in each solution's domain. Where a matter heads to court, we prepare the file and work alongside your chosen representatives.</div>
+  </div>
+</section>
+
+<section class="cream" id="trust">
+  <div class="inner">
+    <h2>What AiLA never does</h2>
+    <p class="lede2">Handing legal work to AI takes trust, so the limits are built in and every one of them can be checked.</p>
+    <div class="never">
+      <div><b>Send or file without you</b><p>Nothing consequential leaves without your sign-off. Aila proposes and a person decides.</p></div>
+      <div><b>Guess at a date or a number</b><p>Deadlines and arithmetic come from fixed rules written for each jurisdiction. The AI reads and drafts. It never calculates.</p></div>
+      <div><b>Invent what it doesn't know</b><p>Answers are grounded in the official record and traceable to it. Where a rule isn't verified, the deadline is flagged, not guessed.</p></div>
+      <div><b>Act without a log</b><p>Every action taken on your behalf is recorded with a reason and available for review.</p></div>
+      <div><b>Train on your matters</b><p>Your data is never used to train models. All data is processed and stored in compliance with UK and EU GDPR, and where you need it AiLA runs as your own instance in your own cloud.</p></div>
+      <div><b>Leave you alone in a dispute</b><p>When it turns contentious, our lawyers take it, on a business they already know in detail across broad areas.</p></div>
+    </div>
+    <p class="quiet">Key modules security-reviewed by Baker McKenzie and DLA Piper, and part of Barclays Eagle Labs and Lawtech UK. AiLA also convenes Legaltech Field Notes, a bi-monthly London gathering of lawyers and builders.</p>
+    <div class="cta-line"><a class="btn-primary" href="#access" data-modal>Request access</a><p>Every limit above is checkable on your own matters within the first week.</p></div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="inner">
+    <h2>Built by people who've done this work</h2>
+    <div class="people">
+      <div class="person"><div class="p-name">Mark Kingsley-Williams</div><div class="p-role">Founder</div><p>Mark is an IP lawyer with a background in economics and tech startups. He built the first high-volume online trademark service in 2008, and within two years it was filing more UK and EU trademarks than any other firm, while he represented clients in disputes before the UKIPO and appeals before the Appointed Person. He went on to found LawPanel, an IP management software firm used by trademark practitioners in the UK and US that passed technical evaluations with several top-five global law firms. AiLA is the third act, the AI legal department, combining AI models harnessed to legal work with lawyers who stand behind it.</p></div>
+      <div class="person"><div class="p-name">Sebastian Guerrero</div><div class="p-role">Lead Developer</div><p>Sebastian is a solution architect and full-stack engineer with twenty-five years of shipping production software, most recently as a Solution Architect at Chevron, designing cloud, data and AI systems on Azure. Before that he spent nearly seven years as lead developer at LawPanel, where he built the cloud IP management platform used by trademark practitioners in the UK and US. At AiLA he leads engineering, harnessing AI models to the deterministic rules, official data and approval gates that legal work depends on.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cream" id="faq">
+  <div class="inner">
+    <h2>Questions you may have</h2>
+    <div class="faq">
+      <details><summary>Is AiLA a law firm?</summary><p>No, and for the work it covers it doesn't need to be. The routine and contentious registry and regulatory work AiLA handles is not reserved legal activity in the UK (the work only regulated lawyers may do). Where a matter does head to court, AiLA prepares the file and works alongside your chosen representatives.</p></details>
+      <details><summary>Who actually does the work?</summary><p>AiLA reads the registers and the contracts, counts every date, watches for what changes and drafts what a date calls for. Aila proposes the next step. A lawyer decides in AiLA before anything changes. When a matter escalates, AiLA's lawyers take it, working with the AI rather than instead of it.</p></details>
+      <details><summary>We have a legal team. Is this only for companies without one?</summary><p>No. A team of five hit by a diligence request, a restructuring and a product launch in the same month has the same problem as a sole general counsel, more obligations than can be handled. AiLA takes the routine layer permanently and absorbs the surges on top, on the same retainer, so the team stops staffing for the peak. Most legal departments already buy overflow this way. This is overflow that knows your business.</p></details>
+      <details><summary>Do I have to log in to keep up?</summary><p>No. Aila sits in Slack or Teams, answers what is due and says each morning what has changed. Decisions are one click away in AiLA. The app is there when you want the full details, and its own inbox and your drive and calendar are coming next.</p></details>
+      <details><summary>What does it cost?</summary><p>Each solution is priced as a monthly retainer based on scope and volume, the way an accountant charges. Nothing is charged by seat or by the hour. Escalated matters are quoted individually before any work begins.</p></details>
+      <details><summary>We're a public body. Does this work for us?</summary><p>Yes. PrivacyVault is built for the request volumes and statutory deadlines that information governance teams carry, and it can run as your own instance in your own cloud.</p></details>
+      <details><summary>Can we take one solution without the others?</summary><p>Yes. Each solution stands alone, with its own onboarding and pricing, and the escalation promise comes with every one of them.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="closing" id="access">
+  <div class="inner">
+    <h2>Put the routine under management</h2>
+    <p class="lede2">Tell us where the pain and delays are worst, and we'll show you what it looks like handled by AiLA.</p>
+    <form class="form" action="https://formspree.io/f/mjgerjao" method="POST">
+      <label for="a-name">Your name</label><input id="a-name" type="text" name="name" required autocomplete="name">
+      <label for="a-email">Work email</label><input id="a-email" type="email" name="email" required autocomplete="email">
+      <label for="a-company">Organisation</label><input id="a-company" type="text" name="company" required autocomplete="organization">
+      <label for="a-area">Where it hurts</label><input id="a-area" type="text" name="area" placeholder="contracts, privacy, companies, trade marks, patents">
+      <input type="hidden" name="_subject" value="AiLA access request">
+      <button type="submit">Request access</button>
+      <p class="note">We come back to you with your companies, marks, patents or contracts already loaded.</p>
+    </form>
+  </div>
+</section>
+
+<div class="band thin" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<footer>
+  <span>AiLA, the external AI legal department. Routine work done, your decisions prepared, contentious matters resolved.</span>
+  <span>ContractVault · PrivacyVault · EntityVault · BrandVault · InnoVault · Employment coming · <a href="/privacy.html" style="color:inherit">Privacy</a> · © 2026 AiLA AI Ltd</span>
+</footer>
+
+<div class="modal" id="access-modal" role="dialog" aria-modal="true" aria-labelledby="am-title" hidden>
+  <div class="modal-card">
+    <button class="modal-x" type="button" aria-label="Close">&times;</button>
+    <div id="am-form">
+      <h3 id="am-title">Request access</h3>
+      <p class="modal-lede">Tell us where the pain and delays are worst, and we'll show you what it looks like handled by AiLA.</p>
+      <form class="form modal-form">
+        <label for="m-name">Your name</label><input id="m-name" type="text" name="name" required autocomplete="name">
+        <label for="m-email">Work email</label><input id="m-email" type="email" name="email" required autocomplete="email">
+        <label for="m-company">Organisation</label><input id="m-company" type="text" name="company" required autocomplete="organization">
+        <label for="m-area">Where it hurts</label><input id="m-area" type="text" name="area" placeholder="contracts, privacy, companies, trade marks, patents">
+        <input type="hidden" name="_subject" value="AiLA access request">
+        <button type="submit">Request access</button>
+        <p class="note modal-err" hidden>That didn't send. Try again, or email hello@trustaila.com.</p>
+      </form>
+    </div>
+    <div id="am-done" hidden>
+      <h3>Thank you</h3>
+      <p class="modal-lede">We'll come back to you with your companies, marks, patents or contracts already loaded.</p>
+      <button class="btn-primary modal-close" type="button">Close</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" aria-live="polite"><b></b><small></small></div>
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // desk
+  const desk = document.querySelector('.desk'); if (desk) {
+  const matters = document.querySelectorAll('.matter'); const waiting = document.getElementById('waiting'); let n = 0;
+  const countWaiting = () => { n = desk.querySelectorAll('.matter:not(.auto):not(.report):not(.done)').length; waiting.textContent = n; };
+  matters.forEach(m => setTimeout(() => { m.classList.add('in'); countWaiting(); }, reduce ? 0 : Number(m.dataset.delay)));
+  document.querySelectorAll('.btn.approve').forEach(b => b.addEventListener('click', e => { e.target.closest('.matter').classList.add('done'); countWaiting(); }));
+  setTimeout(() => document.querySelector('.desk').classList.add('settled'), reduce ? 0 : 3400);
+  // the desk keeps working after the opening
+  const arrivals = [
+    {v:'v-brand', t:'Registry notice, UKIPO, MERIDIAN', m:'A notice from the registry became a matter the morning it arrived. Read and matched to the mark.', time:'Just now', chips:['Registry notice','Matched to the mark'], b:['Review','Open']},
+    {v:'v-contract', t:'Pellworth MSA, expiry', m:'Term ends 31 March. Obligations extracted with their passages, two still to confirm.', time:'Just now', chips:['Expiry 31 March','2 to confirm'], b:['Confirm','Open']},
+    {v:'v-entity', t:'Person with control changed, Northgate Foods', m:'Filed at Companies House overnight and shown as a notice this morning.', time:'Just now', chips:['PSC01','From the register'], b:['Noted','Open']},
+    {v:'v-inno', t:'US 11,234,567, maintenance fee', m:'Due in 90 days. The business says keep, so Aila proposes paying, with the rule named.', time:'Just now', chips:['90 days','Rule named'], b:['Approve','Open']},
+    {v:'v-privacy', t:'Subject access request, new', m:'Arrived 09:12. Thirty days on the UK calendar, stage screening.', time:'Just now', chips:['Day 1 of 30','Screening'], b:['Noted','Open']},
+  ];
+  let ai = 0;
+  function arrive(){
+    const a = arrivals[ai % arrivals.length]; ai++;
+    const el = document.createElement('div');
+    el.className = 'matter ' + a.v;
+    const evs = a.ev ? a.ev.map(e=>'<span class="'+e.c+'">'+e.t+'</span>').join('') : a.chips.map(c=>'<span class="ev">'+c+'</span>').join('');
+    const b = a.b || ['Approve','Open'];
+    el.innerHTML = '<div class="m-top"><div class="m-title">'+a.t+'</div><div class="m-time">'+a.time+'</div></div><div class="m-body">'+a.m+'</div><div class="m-evidence">'+evs+'</div><div class="m-actions"><button class="btn approve">'+b[0]+'</button><button class="btn">'+b[1]+'</button></div>';
+    const first = desk.querySelector('.matter');
+    desk.insertBefore(el, first);
+    requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in')));
+    el.querySelector('.btn.approve').addEventListener('click', e => { el.classList.add('done'); n = Math.max(0, n-1); waiting.textContent = n; });
+    const all = desk.querySelectorAll('.matter');
+    if (all.length > 8) all[all.length-1].remove();
+    n = desk.querySelectorAll('.matter:not(.auto):not(.report):not(.done)').length; waiting.textContent = n;
+  }
+  if (!reduce) { setTimeout(arrive, 26000); setInterval(arrive, 30000); }
+  }
+  // toast: things done, one at a time
+  const done = [
+    {v:'v-contract', b:'Notice served on Grenvale Destinations.', s:'Approved in AiLA. Two-year auto-renewal stopped.'},
+    {v:'v-inno', b:'Renewal approved, EP 3 456 789 DE.', s:'Joined the renewal instruction with its fee.'},
+    {v:'v-entity', b:'Thorncroft Retail accounts date confirmed.', s:'Read from Companies House at 06:10.'},
+    {v:'v-brand', b:'Filing near THORNCROFT SUN reported.', s:'Watching ran at 06:00. Result kept.'},
+    {v:'v-privacy', b:'Response to Rachel Underwood drafted.', s:'Day 17 of 30. Waiting for sign-off.'},
+  ];
+  const toast = document.getElementById('toast'); let ti = 0;
+  function showToast(){
+    const d = done[ti % done.length]; ti++;
+    toast.className = 'toast ' + d.v; toast.querySelector('b').textContent = d.b; toast.querySelector('small').textContent = d.s;
+    requestAnimationFrame(()=>toast.classList.add('show'));
+    setTimeout(()=>toast.classList.remove('show'), 6000);
+  }
+  if (!reduce) { setTimeout(showToast, 22000); setInterval(showToast, 40000); }
+  // week
+  const weekEl = document.querySelector('.week');
+  const playWeek = () => document.querySelectorAll('.week li[data-i]').forEach(li => setTimeout(() => li.classList.add('tick'), li.classList.contains('weekend') ? 5000 : 800 + Number(li.dataset.i) * 600));
+  if (weekEl && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { playWeek(); io.disconnect(); } }, {threshold: .6});
+    io.observe(weekEl);
+  } else { playWeek(); }
+  // ticker
+  const lines = document.querySelectorAll('#ticker div'); let i = 0; if (lines.length) {
+  setInterval(() => { lines[i].classList.remove('show'); i = (i+1) % lines.length; lines[i].classList.add('show'); }, 3400);
+  document.getElementById('ticker').style.visibility = 'hidden'; setTimeout(() => document.getElementById('ticker').style.visibility = 'visible', reduce ? 0 : 6000); }
+  document.querySelectorAll('.whofor .door').forEach(d => d.addEventListener('click', () => { document.querySelectorAll('.whofor .door').forEach(x => x.classList.remove('active')); d.classList.add('active'); }));
+  // access modal
+  const modal = document.getElementById('access-modal');
+  const openModal = e => { e.preventDefault(); modal.hidden = false; document.body.classList.add('modal-open'); document.getElementById('am-form').hidden = false; document.getElementById('am-done').hidden = true; setTimeout(() => document.getElementById('m-name').focus(), 50); };
+  const closeModal = () => { modal.hidden = true; document.body.classList.remove('modal-open'); };
+  document.querySelectorAll('[data-modal]').forEach(a => a.addEventListener('click', openModal));
+  modal.querySelector('.modal-x').addEventListener('click', closeModal);
+  modal.querySelector('.modal-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+  modal.querySelector('form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = e.target, err = f.querySelector('.modal-err'); err.hidden = true;
+    try {
+      const r = await fetch('https://formspree.io/f/mjgerjao', {method:'POST', headers:{'Accept':'application/json'}, body:new FormData(f)});
+      if (!r.ok) throw new Error(r.status);
+      document.getElementById('am-form').hidden = true; document.getElementById('am-done').hidden = false; f.reset();
+    } catch (_) { err.hidden = false; }
+  });
+  // spine follows scroll
+  const map = [['#inno','.s-inno'],['#work','.s-work'],['#brand','.s-brand'],['#entity','.s-entity'],['#privacy','.s-privacy'],['#contracts','.s-contract']];
+  const spineLinks = document.querySelectorAll('.spine a');
+  function spine(){
+    const y = window.scrollY + window.innerHeight * .4; let hit = '.s-aila';
+    for (const [sel, cls] of map){ const el = document.querySelector(sel); if (el && y >= el.getBoundingClientRect().top + window.scrollY) { hit = cls; break; } }
+    spineLinks.forEach(a => a.classList.toggle('on', a.classList.contains(hit.slice(1))));
+  }
+  window.addEventListener('scroll', spine, {passive:true}); spine();
+  // provisioning
+  document.getElementById('go').addEventListener('click', () => {
+    const rows = document.querySelectorAll('.stage .row');
+    rows.forEach((r, k) => { r.classList.remove('on'); r.querySelector('.st').textContent = 'Waiting'; setTimeout(() => { r.classList.add('on'); r.querySelector('.st').textContent = 'Done'; }, reduce ? 0 : 400 + k * 650); });
+  });
+// ---- DEMO PLAYER ----
+(function(){
+  const player = document.getElementById('player'); if (!player) return;
+  const $ = (s, r) => (r || player).querySelector(s);
+  const view = $('.p-view'), narr = $('.p-narr'), askT = $('.p-asktext'), askL = $('.p-askline'), askC = $('.p-askchip'), reply = $('.p-reply');
+  const cursor = $('.p-cursor'), toast = $('.p-toast'), tabs = $('.p-tabs'), pauseBtn = $('.p-pause'), addr = $('.p-addr');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CUST = 'Thorncroft Travel Group (demo, fictional)';
+  const ICON = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAOuklEQVR42u2cWXBUV3rHf+fctRc12hAgYWQWAwY8YFt4sMexY8bbxHYyeMNLZeYxb6lMVR6yPKYqSU0qVTOeclVmkqpU8hDXOI5nbMe7jTFmsVkNYpON2QxIWFJr7e32vefk4bYaBJJoLYBE7ld1Sw/dTR++//f9v/W00FprIrluIiMVRABEAEQSARABEEkEQARAJBEAEQCRRABEAEQSARABEEkEQARAJBEAEQCRRADc0GJGKhhZlNJoLkxrBQIpxZR/j4hmwsNFa40QYsKvRx4wGavXGllS7s5DJ9n/1Vl6BrKkEi5rls5n3W0LEUIMe9+NAYCGQAUT+pwQAmnIKbF8KQSn2tP84398wL62bwkChRAifE1KVi9t4q9++jCLmuqnzBMiCipZvkDQ3t3Hn/39K5zv7mdWMgYiBHlI+jM56mYl+fXfPM/8OTVl0GauB2hAQG4wx2dvfRZaFRX+hwT4nk/DTQ20rG+ZtEUKAS+/+intXX3UzUpQ9C/3yOqqOJ29A/zqt5v5+Z9vQM90CgpUgGEY7Nuyj1/8xS9IzkoSBEGFChP4nk/dvDpe+vAlEqnEhEAYsuLz6QF2HjpFKuGOqHyAoh9QFXfZfeQ0Zzt7aZpdPel4cF0BGFLWro92kapJkaxOogJVofNoDMOgv6ef1h2trHtkHUopDMMYJwCh9bd39ZEteMRsCzUGK0spyOY8znX20TS7uuzFM64QGwpsAz0DHNl1BMux8Is+QRBU9KhAEQQBWml2frBzGKATEde2kEJcmVZ0CIJrWzO7ElYqtPTWHa10d3Rj2ibjzQe00rhxl0NfHKK3ewAp5bj/DVEqrm6eV8vcuhSe749KKUIIPD9gdk0Vi+fXTxr06wrAxfQzURfWWmPZJl3tab7Zt7cEihrfOUrG4DoWzz/SwkAmj5Rh1Ssueo+UAkNK+gdzPPfwncRdm0ApJpuJyutNP4d3HcaNuWg1/pzCkDCYlbTcnmO+8/4wix6XEqREac2TD6zhp4+to6svQzbnlWNBoDXZfJGu3kFeeHQtzz54J0prDClnZhY0FCxbd7SS7khfMfgOFUPDlQa5vKB5fp6nn8yRO78fP9uNGa+7EFnHA0LpO372wnpWLW7k9U++5MS5Lgqej2tbLFvQwIYH1vDo3SumJP+/rgCMh3601iilkBdZmxBQLApSqYAXn+nCtk1yA91kz+0gteRxNAqBMaFzaa156PvLeej7y+nsGWQwV6Aq7lBfnbwqvSA5nelHK43t2lTXV4ceIkLlKwVCaF54Kk1drU/BE0jTYOD0lnLncjIVWaAUWmtm1yRZ2FhHfXUSrTVB+MXM6HnAxdlPuiM9avYjhMAreMxdMJd7n7iXfDZf9oKCJ9nweA9LFufJ5iRSBEgzRr7zAH7mPAgZ0tBE9A8YUpa9QWldtnpDyhDaKezeyOlKP0IK/KJP06Im1j64FiEFUmgyWcn6+/pZ15Ihk5EM9eGEMPHzvQye2V5K19WUnFUKcQnl6Cn1AnO60o9AoJRiwfIFNC9rpq6hms7v8tyx2uNHP+wjk5VcnIRoNEKaDH67heplGxATsK2/fflNTp1P41jmiEYuUBSlRW2hl3/4yxeJzUpNOiaY0zX7UVphOzbNy27GMA3qF9yMoXbz7JMZ/ECMFDCQpku+8yDFgTNYVfNBq5COKpQT57r46tvOkdsRWoHtoNKdNO16C/WzjTPPAyqmHyEIigHV9dXcdEsTAPc8uIRE1zs4ToJcFkZKwYUw8Qs9DJ7ZRs2tG0OvGMf5HNsi5lgjAKDRIowLzvY3iOscmDOsFTEu+ikF4KbFTcyqqwZg/WOLaWqEfH5k5V+gIZvB05+FPTIhx31GNdKjNMqwcLb8HnnuBMp2pywQy+mW/ZRbzUWfJd9bUvosmLOWIpzZCF0cvf04REPdRyn2nQjfp9VkD45247h7PsZu24tyE+GBZloWNN7iyzANlt6+tKRXH8Opwqm9BeUXxsxCtDARfj99p7eVvWJSyo8lsL7ai7NnE9qNI7RixtUB4+39BEFAVXWKhSsWlitfgPicNWjtj1poKS1wDY+OQi0/f69QylDkxJXvxDDaTxLb8gbatC9M8WYaAOOhH8MQ5LNFmpc1UjunNlRiifRjc9YgDXfEHF8DplTkfYPffHUvm49k+eZMZ5g8jrfRpzVYNnKwj/im/wYVgDSmtAC7pgBUnv1A0TdIxvM895PGki5U+fNOzWKsqkZ04I1AQwJbBvz68B0c669HBoNs3vP1+GlI6zDKq4DYpleRA2mw7MnHkusFwLh6PzrcSNv4VC+LV68odSkpB1NhOLj1K9F+YVihFWhBlVXgt9+sZEt7M0mzgGnZbN1/nOCSRl5FZ7Zs3K1vYp47jnZiUxp0rzkAldKPFJDLS554pIvvrXYJ4iuHHXHIiuPz7hxmz4GWpOwCm84u5LXjt5KyC/gqHDEe+/Y7jp48Xxq66EpGbGg3jrN3M/bRPehY4qoq/5oAUAn9DA1W7v9Bhh+s7aJo34KdqBvWdxmy+FjDGkxnFlr7BFqSND0OpRv41yN34JoBWotyfz/v+Xy6t0Ia0hrtJrCO7cfZ/RHaiV915V91ACqhHykhk5WsXJ7j8Uf7yGYUiblryvw/LECgsZLzcGqXEBQLuGZAZz7OSwfvwtcCQ6iympXWuLbF9v3HKfrBFaZXGi0ERscpYlt+D4Y5qU2HaQPAlehHSigUBHPneGx8Mo0KNEiL+Nw7RuzrDwESm7sWqT0CbfDLg3fRmY/jGgFKi2Hgu7bJ8XPdHDreXt54HqsN7e54F1EooA3zqmQ81xyAsehHCPB9QSymePHZbhJxjVcoYifn4NQsKWUdGnRw0aNAB7hz78SxDX5z+HYO9zSQNIsEWoz4/cWiX0E2VKI53wPDuGbKv6oAXIl+wowHNm5I0zi3SL5gIFSORNPdSDsZdjGFMewR0kILg0TDKt7vf4KPTs8jZXsjKr9MQ47FjtbjFDz/ykN0Ia6p8q9qN3Ss1rOUkMlIfvx4D6tuzTGQkZiGJpAmwrDJnNlWyv+HKyzQAld6HB+oZ0//ShzZhtbOqOWp1hrHMjnd0cOBY2dZu6L5svkyN+oNmdHoR0oYzEjuXTfAffcMMFiaammtkGac3qOv0XP4FS5dTQ60JGEWOdZfw9/tuQ8lY7iOPeYaYbmxFwR8sucr1q5oRv9/uKI0Ev0opZESslnJrUvz/PGPesnn5SUFrUaYDgJ3+OKUFsSNgF6vhl+13Y9vxnFkkUpSe6U1Mcfmi4MnyeWLxFxrIlsrMysGjJT9SKEpFARzGoo891T3sMXYy8phrcqP0gpJQKA0vzzQQkcmjiu9ipQ/ZAy2ZXD2fC97274tT9u4kW9JDqOfizIe11W8+Ew3ybiiWBQVWaHWAtcs8m9Hbqc13UDSKowadEdPMcNrRZt3t01+bWW6A3AZ/SRcVKDwA3jmT3qY3+iRKwgqiYOBFqTsAr87cSsfnV3ELLtAoOUEbsAoYo7FzrazDGbD3c/pci9IXi36ObD9AOmONLZjks1J/uihPlavypLJXlgluTwXF+WcPOzxeGzrWMArx1aRsj1UyXbFZe++glEECrMqRfqj/+XLt98BrVFBcGMCcIF+dmMYYbp599pBHviDfgYvWSW5bOugVGgppUkYBdp6anj54B2YwkcpTaCGz2qD0t9KRorWycO4+95l6+/eBiGmTRA2rwb99KcHaNt7mIAYyxfl+PFjPWHGM0YvRhh2ebBiCU23l+Rf2u5BGy5xwx/WZrhUvKI/8m6OVmjbwehux9n0GspN8eXmrfR1dTOrvm7K9zyvOwBKKQxpcOiLA7SfTrPg5jgbn+waNeMRwiDw+qhe9hS1q36C1gEIA0NoBosW//yogy0D1GgjyFJR9U//+SFb939DMu5c6PdoDYaJLOSIffwqIp/FjMXpbD/Dng82sf75p1FBgGGaNw4AQggQ8Pn7u7FteOHpblJVinx+5KCr0SAMks3rMRMNw15LlZ5K5IGWpXy69+tShNDltoIWkvgnr2GkO8KBulJIIdn2+pusf+GZcNR5nYsCOfXZTz8Hth/hT5/LclNTnlx+tIxHoAMPK9mIW7/8ovxfh735Cp5AhX9bVjRTk4rjDwVWHQ7UY5+/i3nqKNoNe/tKKVw3wYFPt5FuPz+hK03TF4BS9vPFx4e467YTrG3xyGQEo11iF0Ki/TyxOauRZrzkDTK0xtJC7JUeo3QbZk5tFSsXzSNXKCIJByt263bs1u3oi/d4tMZybNJdHex678NhWduMB0DI8Iah7N3MD+8fIJORFeX6ica7mcy+x1AWdM/qxfhFH9w41qmjuDveQY+wwRbebjHZ9vpbpXPLGwGAcP8myPeysHoH0nKv4NoCrYqY8XripemXmOBRhrKYdSubSdVWo7vaiW3+nwvedAmwSgXEYgkObvuc706fue40JKeG/0M3zrXvwst0grDHtmghUH4et34Fhltb2mKeWCAcutt105wals+OI9/7L2QhF44VR1KsBtO26O3pZOfb7193GpoSAIZ6K4NntiJKW8SM8Qgh0VoRb1w3+fVBCKtaIbg/NoDqOoWMJRDoUWMHgGXYbH/j7fItySFvErKy+DON0tAwePq5NNlzOxHSQPn5MTxAoLWHabkk5rVMin4uxJ/w83c9/If8+1/HyQ8OXDZPuPQMhjTZv/kzzrR9zfxlt6ACRdHz8IoFZMEY8b6xEIKiV6RY8KZsR9GcAv4BIch3HUJIC6vqpnB+O7q20H4OP3UbZmr+lFz5kaV8vnnVCloeXs/J1sM48fiY1GKYBv29aQ5u3cH8ZbegtaKucR6Z3n7seGxUAIJikVR93ZQF7yn7vSAdeJVzudYEwsE0pr4ACnwf3/NKN2N0RfRpx8IBkJcvhIoXVw78tuNMSQEX/WDTjTWS1OO8EMrVmIeO7xRi+C7RRD4XeQDRD7dGEgEQARBJBEAEQCQRABEAkUQARABEEgEQARBJBEAEQCQRABEAkUQARABEEgEQARBJBEAEQCSXyP8BOvvCzD9NcMMAAAAASUVORK5CYII=';
+
+  const rows = {
+    hotel:    {t:'Hotel allocation agreement, Harrowgate Hotels, contract ends 18 Nov 2026', v:'ContractVault', st:'Moderate stakes', d:'2d · due 18 Nov 2026', c:'warn'},
+    contract: {t:'Destination management agreement, Grenvale Destinations, last day to send non-renewal notice', v:'ContractVault', st:'Moderate stakes', d:'3d · due 19 Nov 2026', c:'warn'},
+    ins:      {t:'Insurance broker retainer, Stannard Holt, contract ends 3 Dec 2026', v:'ContractVault', st:'Moderate stakes', d:'17d · due 3 Dec 2026', c:'soon'},
+    pay:      {t:'Payment gateway agreement, Ledgerstone Payments, last day to send non-renewal notice', v:'ContractVault', st:'Moderate stakes', d:'33d · due 19 Dec 2026', c:'far'},
+    coach:    {t:'Coach hire and transfer agreement, Oakmere Coaches, contract ends 17 Jan 2027', v:'ContractVault', st:'Moderate stakes', d:'62d · due 17 Jan 2027', c:'far'},
+    brand:    {t:'Thorncroft Sun opposition (UKXX0000003)', v:'BrandVault', st:'High stakes', d:'9d · due 25 Nov 2026', c:'soon'},
+    privacy:  {t:'Rachel Underwood, package booking data', v:'PrivacyVault', st:'Moderate stakes', d:'13d · due 29 Nov 2026', c:'soon'},
+    gren2:    {t:'Destination management agreement, Grenvale Destinations, decide on renewal before the term ends', v:'ContractVault', st:'Moderate stakes', d:'3d · due 19 Nov 2026', c:'warn'},
+    wright:   {t:'Marcus Wright, cancelled holiday', v:'PrivacyVault', st:'Moderate stakes', d:'8d · due 24 Nov 2026', c:'soon'},
+    inno:     {t:'EP 3 456 789, dynamic packaging, German validation', v:'InnoVault', st:'Moderate stakes', d:'26d · due 12 Dec 2026', c:'soon'},
+    entity:   {t:'Thorncroft Retail Ltd, accounts due 28 Nov 2026', v:'EntityVault', st:'Moderate stakes', d:'12d · due 28 Nov 2026', c:'soon'},
+    liang:    {t:'Zoe Liang, marketing opt-out and erasure', v:'PrivacyVault', st:'Moderate stakes', d:'13d · due 29 Nov 2026', c:'soon'},
+    ashworth: {t:'DSAR from Helen Ashworth', v:'PrivacyVault', st:'Moderate stakes · DSAR-2026-0008', d:'26d · due 12 Dec 2026', c:'far'},
+  };
+  const row = (id, hl) => { const r = rows[id]; return `<div class="p-row${hl===id?' hl':''}" data-row="${id}"><div class="rt"><b>${r.t}</b><small><u>Open in ${r.v}</u> · ${r.st}</small></div><span class="d ${r.c}">${r.d}</span><button class="p-take" type="button">Take up</button></div>`; };
+  const topbar = (crumb) => `<div class="p-top2"><span class="crumb">${crumb}</span><span class="cust">${CUST.slice(0,27)}… <i>▾</i></span><span class="av"></span></div>`;
+  const home = (hl) => `
+    ${topbar('AiLA dashboard <em>/</em> Dashboard')}
+    <div class="p-h">Dashboard</div><div class="p-sub">${CUST}, 64 live matters</div>
+    <div class="p-stats"><div class="st on"><small>Awaiting your attention</small><b class="red">13</b><span>yours to act on, or close with nobody on it</span></div><div class="st"><small>In hand</small><b>0</b><span>nothing is in hand</span></div><div class="st"><small>For information</small><b>64</b><span>done, or not yet close</span></div></div>
+    <div class="p-filt"><label>Customer<span>${CUST} ▾</span></label><label>Product<span>Every product ▾</span></label><label>Assignee<span>Anyone ▾</span></label><button type="button">Apply</button></div>
+    <div class="p-pile"><h4><i class="dot red"></i>Awaiting your attention <span class="red">13</span></h4>
+      <div class="p-sub2"><i>⌄</i>Waiting for your sign-off <span>5</span></div>${['hotel','contract','ins','pay','coach'].map(id=>row(id,hl)).join('')}
+      <div class="p-sub2"><i>⌄</i>Nobody holds these <span>8</span></div>${['brand','privacy','gren2','wright','inno','entity','liang','ashworth'].map(id=>row(id,hl)).join('')}
+    </div>
+    <div class="p-pile"><h4><i class="dot"></i>In hand <span>0</span></h4><p class="p-note">In hand is for work AiLA or a colleague is already doing, and Matters lists every matter.</p></div>
+    <div class="p-pile"><h4><i class="dot"></i>For information <span>64</span></h4><p class="p-note"><u>Show the 64</u></p></div>`;
+
+  const matter = (m, area) => `
+    ${topbar(`${area} <em>/</em> Matters <em>/</em> ${m.ref}`)}
+    <div class="p-h">${m.title}</div><div class="p-sub">${m.sub}</div>
+    <div class="p-m"><div>
+      ${m.status?`<div class="p-status">✓ ${m.status}</div>`:''}
+      <div class="p-why"><b>Why it is here</b>${m.why}</div>
+      <div class="p-src">${m.src}<small>${m.srcFrom}</small></div>
+    </div><div>
+      <div class="p-kv">${m.kv.map(([k,v])=>`<span>${k}</span><div>${v}</div>`).join('')}</div>
+      <div class="p-prop"><b>${m.propLab}</b><p>${m.prop}</p><div class="p-acts"><button class="p-btn pri" data-act="pri">${m.pri}</button><button class="p-btn">${m.sec}</button></div></div>
+    </div></div>`;
+
+  const msg = (m) => `<div class="p-msg${m.late?' late':''}"><div class="av${m.u?' u':''}">${m.u?'LA':`<img src="${ICON}" alt="">`}</div><div><div class="who">${m.u?'L. Ahmed':'Aila <em>APP</em>'}<span>${m.t}</span></div><p>${m.h}</p>${m.q?`<div class="q">${m.q}</div>`:''}${m.btns?`<div class="p-sl-btns">${m.btns.map((b,i)=>`<button type="button" class="p-sl-btn" data-act="${i===0?'open':'x'}">${b}</button>`).join('')}</div>`:''}</div></div>`;
+  const slack = (msgs) => `
+    <div class="p-sl"><div class="p-sl-side"><div class="p-sl-ws">Thorncroft Travel <span>▾</span></div><div class="p-sl-lab">Channels</div><a># general</a><a class="on"># aila-updates</a><a># legal</a><a># sales-ops</a><div class="p-sl-lab">Direct messages</div><a><i class="u"></i>L. Ahmed</a><a><i class="u"></i>J. Okoro</a><div class="p-sl-lab">Apps</div><a><img src="${ICON}" alt="" class="ap">Aila</a></div>
+    <div class="p-sl-main"><div class="p-sl-head"># aila-updates <small>3 members · Aila, L. Ahmed, J. Okoro</small></div><div class="p-sl-msgs">${msgs.map(msg).join('')}</div><div class="p-sl-in">Message #aila-updates</div></div></div>`;
+
+  const DASH = 'app.trustaila.com/thorncroft/dashboard';
+  const M0 = {t:'08:02', h:'<b>13 matters, 2 need you today</b><span class="sl-g">Waiting for your sign-off</span><span class="sl-l"><em>19 Nov</em><a data-act="open">Destination management agreement, Grenvale Destinations, last day to send non-renewal notice</a>, hard deadline</span><span class="sl-l"><em>18 Nov</em><a>Hotel allocation agreement, Harrowgate Hotels, contract ends 18 Nov 2026</a></span><span class="sl-l"><em>3 Dec</em><a>Insurance broker retainer, Stannard Holt, contract ends 3 Dec 2026</a></span><span class="sl-g">Nobody holds these</span><span class="sl-l"><em>25 Nov</em><a>Thorncroft Sun opposition (UKXX0000003)</a>, hard deadline</span><span class="sl-l"><em>28 Nov</em><a>Thorncroft Retail Ltd, accounts due 28 Nov 2026</a></span><span class="sl-l"><em>29 Nov</em><a>Rachel Underwood, package booking data</a>, hard deadline</span>'};
+  const Q1 = {u:1, t:'08:12', h:'Is 90 days calendar or working days?'};
+  const A1 = {late:1, t:'08:12', h:'Calendar days. Clause 1.1 defines days as calendar days, so the last safe date is Thursday 19 November. The notice is drafted from the clause.', q:'“…written notice of non-renewal not less than ninety days before the end of the then-current term.” Clause 14.2, Grenvale destination management agreement, page 9', btns:['Approve in ContractVault','Discuss']};
+  const D1 = {t:'09:14', h:'✓ Notice of non-renewal served on Grenvale Destinations at 09:14, on AiLA\'s paper, by email and post. Logged with your approval and the delivery receipt. A rate matter is open.'};
+  const Q2 = {u:1, t:'08:15', h:'How close is the Thorncroft Sun filing, really?'};
+  const A2 = {late:1, t:'08:15', h:'Your mark is contained in full and the services overlap in full. Similarity 0.91. On the register alone a tribunal would likely find a likelihood of confusion. Opposition closes 25 November.', q:'UK00004123987 THORNCROFT SUN TOURS, class 39, travel arrangement and tour operating, published 25 September 2026, applicant Suncrest Tours Ltd. UKIPO register, read 06:00 today', btns:['Instruct in BrandVault','Watch only']};
+  const D2 = {t:'09:21', h:'✓ Opposition instructed. The matter is with AiLA Legal, with the watch result, the register extract and the portfolio record attached. TM7 in draft, and a fixed fee quote is with you for approval.'};
+  const P0 = {t:'08:02', h:'<b>Rachel Underwood</b>\'s subject access request is on day 17 of 30. The response is drafted, 214 items reviewed and 31 withheld with reasons. It is due on 29 November and can go on the 23rd.<span class="sl-l"><em>29 Nov</em><a data-act="open">Rachel Underwood, package booking data</a>, hard deadline</span>'};
+  const Q3 = {u:1, t:'08:20', h:'Anything withheld I should look at?'};
+  const A3 = {late:1, t:'08:20', h:'31 items withheld, 28 as third-party data and 3 as privileged. The three privileged items are flagged for you on the schedule.', q:'“I would like a copy of all personal data you hold about me, including my booking history and any emails about my package holiday in August.” Received by email, 30 October 2026, 18:02', btns:['Approve in PrivacyVault','Discuss']};
+  const D3 = {t:'09:31', h:'✓ Response approved. It goes to Rachel Underwood on 23 November with the schedule of withheld items, six days inside the deadline. The clock stops on sending.'};
+  const W0 = {t:'08:00', h:'Monday. The week ahead. <b>Grenvale Destinations</b> notice served, rate matter in hand. <b>Thorncroft Sun</b> opposition with AiLA Legal. <b>Rachel Underwood</b> response goes on 23 November. <b>Thorncroft Retail</b> accounts due 28 November, with the accountants. Nothing else falls due before Friday.', btns:['See the week']};
+
+  const scenes = [
+    {id:'contract', name:'Contracts', area:'ContractVault', dot:'var(--burgundy)', steps:[
+      {view:'slack', msgs:[M0], narr:`Each morning at eight Aila says what needs attention in <b>#aila-updates</b>, in Slack or Teams, with a link to each matter. There is nothing to open day to day.`, dur:5600},
+      {view:'slack', msgs:[M0,Q1,A1], narr:`Ask in the thread and Aila answers in plain words, with the clause it read attached. A decision is a link into the app, so nothing leaves without a lawyer.`, cursor:'.p-msg:last-child [data-act=open]', click:true, dur:7400},
+      {view:'matter', url:'app.trustaila.com/thorncroft/contracts/1042', m:{ref:'CV-1042', title:'Destination management agreement, Grenvale Destinations', sub:'ContractVault · awaiting your attention · last day to send non-renewal notice', why:'The notice window under clause 14.2 closes on 19 November. Without notice the agreement renews for two years at the current rate.', src:'“This Agreement shall renew automatically for successive periods of twenty-four months unless either party gives written notice of non-renewal not less than ninety days before the end of the then-current term.”', srcFrom:'Clause 14.2, Grenvale destination management agreement, signed 17 February 2025, page 9', kv:[['Arrived','Extracted on connection, confirmed by L. Ahmed'],['Notice by','19 November 2026'],['Counted','Calendar days, per clause 1.1'],['Value','£117,000 a year']], propLab:'Aila proposes', prop:'Serve notice of non-renewal on AiLA\'s paper and open a matter to renegotiate the rate. The notice is drafted from the clause.', pri:'Approve notice', sec:'Discuss'}, narr:`The link opens the matter page, with the clause the date came from, the day the notice must land by and what Aila proposes. Nothing has left yet.`, cursor:'[data-act=pri]', click:true, dur:6800},
+      {view:'slack', msgs:[M0,Q1,A1,D1], narr:`Approved. Aila serves the notice, confirms in the thread and logs it.<span class="p-done">✓ A £117,000 renewal that would have gone through unnoticed.</span>`, toast:'Email to Grenvale Destinations: notice of non-renewal under clause 14.2, served on AiLA\'s paper', dur:5600},
+    ]},
+    {id:'brand', name:'Brands', area:'BrandVault', dot:'var(--indigo)', steps:[
+      {view:'slack', msgs:[M0,Q2,A2], narr:`Watching runs the similarity search of the UK register every day for each mark. It found <b>THORNCROFT SUN TOURS</b> in your class and kept the result. The question is answered from the register extract, in the thread.`, cursor:'.p-msg:last-child [data-act=open]', click:true, dur:7400},
+      {view:'matter', url:'app.trustaila.com/thorncroft/brands/1047', m:{ref:'BV-1047', title:'Thorncroft Sun opposition (UKXX0000003)', sub:'BrandVault · awaiting your attention · high stakes', why:'A new application in class 39 scored 0.91 against THORNCROFT SUN on the daily watch. The opposition period runs for two months from publication and closes on 25 November.', src:'UK00004123987 THORNCROFT SUN TOURS, class 39, travel arrangement and tour operating, published 25 September 2026, applicant Suncrest Tours Ltd.', srcFrom:'UKIPO register, read 06:00 today', kv:[['Found','Watching, 26 September'],['Similarity','0.91, word and services'],['Opposition closes','25 November 2026'],['Your mark','UKXX0000003 THORNCROFT SUN, class 39, registered']], propLab:'Aila proposes', prop:'Instruct an opposition. AiLA\'s lawyers take it with the watch result, the register extract and the portfolio record already attached.', pri:'Instruct opposition', sec:'Watch only'}, narr:`The register extract, the score and the deadline are on the page. The decision is whether to oppose, and that is a lawyer's.`, cursor:'[data-act=pri]', click:true, dur:6800},
+      {view:'slack', msgs:[M0,Q2,A2,D2], narr:`Instructed. The matter is with our own lawyers, with the context already in it.<span class="p-done">✓ Escalation started with the file, with no briefing call or discovery invoice.</span>`, toast:'Matter escalated to AiLA Legal with the watch result and register extract attached', dur:5600},
+    ]},
+    {id:'inno', name:'Innovation', area:'InnoVault', dot:'var(--slate)', steps:[
+      {view:'home', hl:'inno', url:DASH, narr:`Everything also sits on the dashboard, sorted into three piles. The German validation of EP 3 456 789, the dynamic packaging patent, falls due for renewal on 12 December. InnoVault worked the date out from the EPO's rules and the German office's, and names the rule beside it.`, cursor:'[data-row=inno]', click:true, dur:5600},
+      {view:'matter', url:'app.trustaila.com/thorncroft/innovation/1051', m:{ref:'IV-1051', title:'EP 3 456 789, dynamic packaging, German validation', sub:'InnoVault · awaiting your attention', why:'The fifth-year renewal falls due on 12 December. The commercial signal for Germany says keep, so Aila proposes paying.', src:'Renewal due 12 December 2026. Last day to pay late, with surcharge, 12 June 2027.', srcFrom:'Rule 2026-10-29.1, DPMA renewal, checked against the office\'s own source', kv:[['Status','Granted, validated DE, read from the EPO on Monday'],['Fee','€1,030 plus agent'],['Signal','Germany, keep'],['Rule','2026-10-29.1, checked']], propLab:'Aila proposes', prop:'Renew. Add the right to this quarter\'s renewal instruction with its due date, grace end and fee.', pri:'Approve renewal', sec:'Let lapse'}, narr:`Every calculated date names its rule and says whether the rule has been checked. Where the office's date disagrees, both are shown.`, ask:'What if we let Germany go?', reply:'The validation lapses on 12 June 2027 at the latest. The business marked Germany keep, so Aila proposes renewal, but the decision is yours.', cursor:'[data-act=pri]', click:true, dur:7800},
+      {view:'matter', done:true, url:'app.trustaila.com/thorncroft/innovation/1051', m:{ref:'IV-1051', title:'EP 3 456 789, dynamic packaging, German validation', sub:'InnoVault · in hand', status:'Renewal approved, 09:26', why:'Approved by L. Ahmed. The right joins the renewal instruction, which lists each right with its due date, grace end and fee, for download as Word or PDF.', src:'Renewal due 12 December 2026.', srcFrom:'Rule 2026-10-29.1', kv:[['Instruction','Q4 2026, 3 rights'],['Download','Word, PDF'],['Paid by','Your renewal agent. InnoVault never pays a fee.']], propLab:'Done', prop:'Next year\'s renewal opens a new matter when it is due.', pri:'Open instruction', sec:'Close'}, narr:`Approved. The right is on the renewal instruction with its fee.<span class="p-done">✓ InnoVault proposes and records. It never pays a fee.</span>`, toast:'Added to the Q4 renewal instruction, Word and PDF, for your renewal agent', dur:5200},
+    ]},
+    {id:'privacy', name:'Privacy', area:'PrivacyVault', dot:'var(--steel)', steps:[
+      {view:'slack', msgs:[P0,Q3,A3], narr:`A request that arrived at six on a Friday was logged, the thirty days counted on the UK calendar and the response drafted from the data Aila was given at setup. Day 17 of 30.`, cursor:'.p-msg:last-child [data-act=open]', click:true, dur:7400},
+      {view:'matter', url:'app.trustaila.com/thorncroft/privacy/1039', m:{ref:'PV-1039', title:'Rachel Underwood, package booking data', sub:'PrivacyVault · awaiting your attention · subject access request', why:'Received 30 October at 18:02. Statutory deadline 29 November, counted on the UK calendar. Response drafted from the booking and email data AiLA was given at setup, 214 items reviewed.', src:'“I would like a copy of all personal data you hold about me, including my booking history and any emails about my package holiday in August.”', srcFrom:'Request, received by email 30 October 2026', kv:[['Day','17 of 30'],['Stage','Response in draft'],['Items','214 reviewed, 31 withheld with reasons'],['Deadline','29 November 2026']], propLab:'Aila proposes', prop:'Send the response on 23 November with the schedule of withheld items and the reasons for each.', pri:'Approve response', sec:'Discuss'}, narr:`Days are counted on the UK calendar, the stage is shown and the drafted response is ready for a lawyer to approve.`, cursor:'[data-act=pri]', click:true, dur:6800},
+      {view:'slack', msgs:[P0,Q3,A3,D3], narr:`Approved. The response is scheduled and the clock is accounted for.<span class="p-done">✓ A statutory deadline met with six days to spare.</span>`, toast:'Response to Rachel Underwood scheduled for 23 November with the schedule of withheld items', dur:5600},
+    ]},
+    {id:'entity', name:'Entities', area:'EntityVault', dot:'var(--ochre)', steps:[
+      {view:'home', hl:'entity', url:DASH, narr:`EntityVault reads Companies House every morning. Thorncroft Retail Ltd's accounts are due in 12 days, and the date came from the register at 06:10, never worked out from a year end.`, cursor:'[data-row=entity]', click:true, dur:5600},
+      {view:'matter', url:'app.trustaila.com/thorncroft/entities/1033', m:{ref:'EV-1033', title:'Thorncroft Retail Ltd, accounts due 28 Nov 2026', sub:'EntityVault · awaiting your attention', why:'Accounts for the year to 28 February 2026 are due at Companies House by 28 November 2026. Read from the register at 06:10 today.', src:'Thorncroft Retail Ltd, 09876543. Accounts due 28 November 2026, made up to 28 February 2026. Next confirmation statement due 8 March 2027.', srcFrom:'Companies House register, read 06:10 today', kv:[['Due','28 November 2026'],['Officers','4, no change'],['PSC','Thorncroft Travel Group Holdings plc'],['Next statement','Due 8 March 2027']], propLab:'Aila proposes', prop:'Confirm the accountants have the filing in hand. Aila watches the register and closes the matter when the filing appears.', pri:'Confirm in hand', sec:'Close'}, narr:`Dates come from the register itself. A filing that changes an officer or a person with control appears as a notice the morning it is filed.`, cursor:'[data-row=x]', dur:5600},
+      {view:'slack', msgs:[W0], narr:`On Mondays Aila sends the week, every area in one message.`, dur:4800},
+    ]},
+  ];
+
+  let si = 0, ki = 0, timer = null, paused = false, started = false, typing = null;
+  scenes.forEach((sc, i) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('role','tab'); b.innerHTML = `<i style="background:${sc.dot}"></i>${sc.name}`; b.addEventListener('click', () => { go(i, 0, true); }); tabs.appendChild(b); });
+
+  function typeInto(text, cb) {
+    if (typing) clearInterval(typing);
+    askT.textContent = ''; askL.classList.remove('empty'); reply.textContent = '';
+    if (!text) { askT.textContent = 'Ask Aila…'; askL.classList.add('empty'); return cb && cb(); }
+    if (reduce) { askT.textContent = text; return cb && cb(); }
+    let i = 0; typing = setInterval(() => { askT.textContent = text.slice(0, ++i); if (i >= text.length) { clearInterval(typing); typing = null; cb && cb(); } }, 28);
+  }
+  function moveCursor(sel, click, then) {
+    const el = sel && view.querySelector(sel);
+    if (!el || reduce) { cursor.classList.remove('show'); if (el && click) el.classList.add('hl'); return then && then(); }
+    const pr = $('.p-main').getBoundingClientRect(), r = el.getBoundingClientRect();
+    cursor.classList.add('show');
+    cursor.style.left = (r.left - pr.left + Math.min(r.width * .5, 160)) + 'px';
+    cursor.style.top = (r.top - pr.top + r.height * .55) + 'px';
+    setTimeout(() => { if (click) { el.classList.add('hl'); cursor.classList.add('click'); setTimeout(() => cursor.classList.remove('click'), 220); } then && then(); }, 1000);
+  }
+  function showToast(t) { toast.innerHTML = `<b>Simulated</b>${t}`; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3600); }
+
+  function go(s, k, manual) {
+    clearTimeout(timer); si = s; ki = k;
+    const sc = scenes[si], st = sc.steps[ki];
+    tabs.querySelectorAll('button').forEach((b, i) => b.classList.toggle('on', i === si));
+    $('.p-appname').textContent = sc.name; $('.p-apparea').textContent = sc.area; $('.p-dot').style.background = sc.dot;
+    addr.textContent = st.url || (st.view === 'slack' ? 'Slack · Thorncroft Travel · #aila-updates' : DASH);
+    player.querySelectorAll('.p-nav a').forEach(a => a.classList.toggle('on', st.view === 'home' ? a.dataset.nav === 'home' : (st.view === 'matter' && a.dataset.nav === 'matters')));
+    player.classList.toggle('slackmode', st.view === 'slack');
+    if (st.view === 'home') view.innerHTML = home(st.hl); else if (st.view === 'matter') view.innerHTML = matter(st.m, sc.area); else view.innerHTML = slack(st.msgs);
+    if (st.view === 'slack') { const box = view.querySelector('.p-sl-msgs'); box.scrollTop = box.scrollHeight; setTimeout(() => { if (si === s && ki === k) { view.querySelectorAll('.p-msg.late').forEach(m => m.classList.add('show')); box.scrollTop = box.scrollHeight; } }, reduce ? 0 : 1600); }
+    view.scrollTop = 0;
+    const h = view.querySelector('.p-row.hl'); if (h) view.scrollTop = Math.max(0, h.offsetTop - view.clientHeight * .5);
+    narr.innerHTML = st.narr; askC.classList.toggle('show', !!st.ask); askC.textContent = st.ask ? sc.name : '';
+    cursor.classList.remove('show'); toast.classList.remove('show');
+    if (st.toast) setTimeout(() => showToast(st.toast), 600);
+    typeInto(st.ask || '', () => { if (st.reply) setTimeout(() => { reply.textContent = st.reply; }, 300); });
+    const after = Math.max(600, (st.dur || 5000) - 1400);
+    setTimeout(() => { if (si === s && ki === k) moveCursor(st.cursor, st.click); }, after);
+    if (!paused && !reduce) timer = setTimeout(next, st.dur || 5000);
+    if (manual) { paused = false; pauseBtn.classList.remove('paused'); pauseBtn.lastChild.textContent = 'Pause demo'; }
+  }
+  function next() { let s = si, k = ki + 1; if (k >= scenes[s].steps.length) { s = (s + 1) % scenes.length; k = 0; } go(s, k); }
+  pauseBtn.addEventListener('click', () => { paused = !paused; pauseBtn.classList.toggle('paused', paused); pauseBtn.lastChild.textContent = paused ? 'Play demo' : 'Pause demo'; if (paused) clearTimeout(timer); else next(); });
+  view.addEventListener('click', (e) => { const r = e.target.closest('[data-row]'); const a = e.target.closest('[data-act=pri],[data-act=open]'); if (r || a) { clearTimeout(timer); if (r) { const id = r.getAttribute('data-row'); const idx = scenes.findIndex(x => x.steps[0].hl === id); if (idx >= 0) go(idx, 1, true); } else if (scenes[si].steps[ki + 1]) go(si, ki + 1, true); } });
+  function start() { if (started) return; started = true; go(0, 0); }
+  if ('IntersectionObserver' in window) { new IntersectionObserver((es) => { if (es.some(x => x.isIntersecting)) start(); }, {threshold: .35}).observe(player); } else start();
+  window.ailaDemo = {go, scenes};
+  document.querySelectorAll('img[data-aila-icon]').forEach(i => { i.src = ICON; });
+})();
+
+</script>
+<script type="text/javascript">
+_linkedin_partner_id = "8728946";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script>
+<script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8728946&fmt=gif" />
+</noscript>
+</body>
+</html>
